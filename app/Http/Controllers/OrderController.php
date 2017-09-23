@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Payment;
+use App\Order;
 use App\Product;
 use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Redirect;
 
-class PaymentController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,13 @@ class PaymentController extends Controller
     public function index()
     {
     	$product = DB::table('products')
-    		->where('state',1)
-    		->pluck('name','id');
-
-    		$products = $product;
-    
-    	return view('payment',['products'=>$products]);//
+    	->where('state',1)
+    	->pluck('name','id');
+    	
+    	$products = $product;
+    	
+    	return view('order',['products'=>$products]);//
+    	//
     }
 
     /**
@@ -45,7 +46,6 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
     	$product = DB::table('products')
     	->where('id',$request->product)
     	->get();
@@ -66,28 +66,28 @@ class PaymentController extends Controller
     	$person->save();
     	
     	
-    	$payment = new Payment();
+    	$order = new Order();
     	
-    	$payment->commerce_id = 'rl0001';
-    	$payment->customer_id = $person->id;
-    	$payment->product_description = $product[0]->description;
-    	$payment->product_amount = $product[0]->amount;
-    	$payment->product_id = $product[0]->id;
-    	$payment->response_url = 'https://pagosqioto.com/result';
-    	$payment->state = '00';
+    	$order->commerce_id = '8226';
+    	$order->customer_id = $person->id;
+    	$order->product_description = $product[0]->description;
+    	$order->product_amount = $product[0]->amount;
+    	$order->product_id = $product[0]->id;
+    	$order->response_url = 'https://pagosqioto.com/result';
+    	$order->state = '00';
     	
-       	$payment->save();
+    	$order->save();
     	
-    	return Redirect::to('payment');
+    	return Redirect::to('order');//
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Payment  $payment
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Payment $payment)
+    public function show(Order $order)
     {
         //
     }
@@ -95,10 +95,10 @@ class PaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Payment  $payment
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Payment $payment)
+    public function edit(Order $order)
     {
         //
     }
@@ -107,10 +107,10 @@ class PaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Payment  $payment
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -118,10 +118,10 @@ class PaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Payment  $payment
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payment $payment)
+    public function destroy(Order $order)
     {
         //
     }

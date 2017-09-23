@@ -36,7 +36,7 @@
             <li class=""> <a href="{{ URL::asset('/elegible') }}">Consulta Elegibilidad</a>
 
             </li>
-            <li><a href="{{ URL::asset('/payment') }}">Capacitacion</a></li>
+            <li><a href="{{ URL::asset('/order') }}">Capacitacion</a></li>
 
           </ul>
         </div>

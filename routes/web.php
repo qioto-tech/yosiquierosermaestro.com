@@ -12,7 +12,7 @@
 */
 
 Route::resource('/teacher','TeacherController');
-Route::resource('/payment','PaymentController');
+Route::resource('/order','OrderController');
 
 
 Route::get('/', function () {

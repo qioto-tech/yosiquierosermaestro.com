@@ -12,10 +12,10 @@
 
 @section('content')
 
-@include('payment.partials.errors')
+@include('order.partials.errors')
 
 
-{!! Form::open(['route' => 'payment.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+{!! Form::open(['route' => 'order.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 
   <div class="form-group">
     <label class="control-label col-sm-2" for="customer_ci">Cedula:</label>
