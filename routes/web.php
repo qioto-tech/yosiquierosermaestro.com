@@ -22,7 +22,10 @@ Route::get('/', function () {
 	Route::get('/index.html', function () {
 		return view('welcome');
 	});
-		
+	
+	Route::get('/tips', function () {
+		return view('welcomePruebas');
+	});
 	Route::post('/teacher-search-suitable/search', 'TeacherController@searchTeacher_suitable');
 	Route::post('/teacher-search-elegible/search', 'TeacherController@searchTeacher_elegible');
 	Route::get('/idoneo', 'TeacherController@suitable');

@@ -58,7 +58,6 @@ class OrderController extends Controller
     			'customer_phone'=>['required'],
     			'customer_address'=>['required'],
     			'customer_email'=>['required'],
-    			'customer_email'=>['required'],
     			'product'=>['required'],
     	]);
     	
@@ -73,12 +72,15 @@ class OrderController extends Controller
     	$order->product_description = $product[0]->description;
     	$order->product_amount = $product[0]->amount;
     	$order->product_id = $product[0]->id;
-    	$order->response_url = 'https://pagosqioto.com/result';
+    	$order->response_url = 'https://www.pagosqioto.com/payment/';
     	$order->state = '00';
     	
     	$order->save();
     	
-    	return Redirect::to('order');//
+    	$url = $this->pagosmedios($order->id);
+    	$array = json_decode($url);
+    	
+    	return Redirect::to($array->data->payment_url);//
     }
 
     /**
@@ -124,5 +126,53 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+    
+    private function pagosmedios($id)
+    {
+    	$orders = DB::table('orders')
+    	->join('persons', 'orders.customer_id', '=' ,'persons.id')
+    	->where('orders.id',$id)
+    	->select('orders.commerce_id','persons.customer_ci as pci','persons.customer_name','persons.customer_lastname','persons.customer_phone','persons.customer_address','persons.customer_email','orders.product_description','orders.product_amount','orders.product_id','orders.response_url')
+    	->get();
+    	
+    	$url = 'https://app.pagomedios.com/api/setorder/'; //URL del servicio web REST
+    	//$header = array('Content-Type: application/json',);
+    	
+    	foreach ($orders as $value){
+    		$dataOrden = array(	'commerce_id' => $value->commerce_id, //ID unico por comercio
+    				'customer_id' => $value->pci, //Identificación del tarjeta habiente (RUC, Cédula, Pasaporte)
+    				'customer_name' => $value->customer_name, //Nombres del tarjeta habiente
+    				'customer_lastname' => $value->customer_lastname, //Apellidos del tarjeta habiente
+    				'customer_phones' => $value->customer_phone,  //Teléfonos del tarjeta habiente
+    				'customer_address' => $value->customer_address,  //Dirección del tarjeta habiente
+    				'customer_email' => $value->customer_email,  //Correo electrónico del tarjeta habiente
+    				'customer_language' => 'es',  //Idioma del tarjeta habiente
+    				'order_description' => $value->product_description,  //Descripción de la órden
+    				'order_amount' => $value->product_amount, //Monto total de la órden
+    				'order_id' => $id,
+    				'response_url' => $value->response_url,
+    		);
+    	}
+    	
+    	$params = http_build_query( $dataOrden ); //Tranformamos un array en formato GET
+    	//Consumo del servicio Rest
+    	
+    	//dd($params);
+    	
+    	$curl = curl_init();
+    	curl_setopt($curl, CURLOPT_URL, $url.'?'.$params);
+    	//dd($params);
+//     	curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+    	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    	
+    	$response = curl_exec($curl);
+    	curl_close($curl);
+    	
+    	
+    	
+    	return $response;
     }
 }

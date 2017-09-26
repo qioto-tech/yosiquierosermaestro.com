@@ -51,32 +51,67 @@
       <div class=" col-sm-12 col-md-6 col-lg-6">
         <div class="row">
           <div class="leftbar_content">
-            
+            <h2>Noticias</h2>
           
-              @yield('info')
               <div class="single_stuff wow fadeInDown">
-              
+              <div class="single_stuff_img"> <a href="#"><img src="images/tips3.jpg" alt=""></a> </div>
               <div class="single_stuff_article">
-                <div class="single_sarticle_inner"> 
-                  <div class="stuff_article_inner">
-                     <h2>@yield('sub-title')</h2>
-			<p> @yield('content') </p>
-
-				<div class="col-md-10" id="result-elegible">
-				@yield('grid-content')
-				</div>
-               
+                <div class="single_sarticle_inner"> <a class="stuff_category" href="#">QSM6</a>
+                  <div class="stuff_article_inner"> <span class="stuff_date">Sep <strong>1</strong></span>
+                    <h2><a href="#">Capacitacion para pruebas de personalidad</a></h2>
+                      <?php
+                    $personalidad=utf8_encode("El objetivo principal de las pruebas de personalidad es determinar las el desenvolvimiento psicológico del aspirante en un entorno estudiantil de niños y jóvenes. El Ministerio de Educación ha realizado esfuerzos para poder segregar personalidades adictivas o violentas que puedan ser perjudiciales para la educación.");
+                    $personalidax=utf8_encode("Las pruebas de personalidad no tienen respuestas correctas o incorrectas ya que estas preguntas son interlazadas unas con otras y son diseñadas para reconocer que el aspirante esta mintiendo en la lógica de su respuesta. Es por eso que el principal secreto en estas pruebas de personalidad es la coherencia de contestación y tiempos de respuesta");
                     
-                                 
+                    $personalidad3=utf8_encode("Ejemplo: En la pregunta 20 te preguntan algo como: Te gusta ir a fiestas y beber socialmente?.... En la pregunta 52 que esta enlazada te preguntan lo mismo pero de forma diferente Ejemplo te gusta tomar solo o acompañado?. Si te das cuenta estas preguntas tienen relación y se deben responder coherentemente.");
+                    
+                    $personalidad4=utf8_encode("1: Responder con la verdad y coherentemente todas las preguntas");
+                    $personalidad5=utf8_encode("2: No contradecirnos");
+                    $personalidad7=utf8_encode("3: Paciencia, la prueba puede llegar a demorarse aproximadamente 50 minutos cuyo objetivo es ofuscar la relación entre las primeras preguntas y las últimas");
+                    
+                    $personalidad8=utf8_encode("Existen 2 tipos de prueba en latinoamérica que determinan este tipo de personalidades que busca el Ministerio de Educación. Estas pruebas han sido compiladas y puestas a su disposición por nuestro equipo para brindarles acertividad al momento de sus pruebas, y la confianza de que estas preparado para las mismas.  ");
+                    
+                    $personalidad9=utf8_encode("El siguiente es un link de la plataforma donde se desplegará un demo de las pruebas de personalidad completamente gratis ");
+                    
+                    $personalidad10=utf8_encode("Si deseas ingresar a la prueba completa donde se desplegarán las aproximadamente 500 preguntas del cuestionario de evaluación de personalidad");
+                    $personalidad11=utf8_encode("Mientras más te prepares, más oportunidades tendrás de acceder a un puesto de trabajo dentro del Magisterio, no arriesgues tu futuro. CAPACITATE!!!!");
+                    
+                    
+                    ?>
+                    
+                    <p>{!!$personalidad!!}</p>
+                    <p>{!!$personalidax!!}</p>
+                    <p>{!!$personalidad3!!}</p>
+                    <p>TIPS:</p>
+                   <p>{!!$personalidad4!!}</p>
+                   <p>{!!$personalidad5!!}</p>
+                   <p>{!!$personalidad7!!}</p>
+                   <p>{!!$personalidad8!!}</p>
+                   
+                    <p>
+                    <a target="_blank" href="http://www.mecapacitoecuador.com/"><h2>Click aqui para ingresar al Demo</h2></a>
+                   Usuario:admin
+                    Password: admin
+                    
+                    </p>
+                    
+                    <p>{!!$personalidad10!!}</p>
+                    <p>
+                    
+                    <a target="_blank" href="http://www.yosiquierosermaestro.com/order"><h1><b><span style="color:#CCAF30">Simulador completo</span> <span style="color:#1b82cd">pruebas de </span> <span  style="color:#d9534f">personalidad AQUI...</span></b></h1></a>
+                    </p>
+                    
+                   <p>{!!$personalidad11!!}</p>
                     
                   </div>
                 </div>
               </div>
             </div>
-          
-        
-         
             
+            
+       
+            
+    
           
           
            <!-- <div class="stuffpost_paginatinonarea wow slideInLeft">
@@ -97,13 +132,12 @@
             <h2 class="yellow_bg">Vinculos importantes</h2>
             <div class="middlebar_content_inner wow fadeInUp">
               <ul class="middlebar_nav">
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/tips">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="images/cronograma.png" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="images/Lista.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="images/archivo.png" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica tu idoneidad QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="images/visto.png" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica si eres elegible QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank" href="www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="www.educacion.gob.ec">Ministerio de Educacion</a> </li>
-                
                 
                 
               </ul>
@@ -127,42 +161,19 @@
               <h2>Relacionados</h2>
               <ul class="featured_nav">
                   
-                  
-                   <li> <a class="featured_img" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="images/test.jpg" alt=""></a>
-                    <?php
-                    $localx=  utf8_encode("Prepárate para las pruebas");
-                    ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/tips">{!!$localx!!}</a> </div>
-                </li>
-                
-                
-               
-                
                   <li> <a class="featured_img" target="_blank"  href="http://www.yosiquierosermaestro.com/order"><img src="images/5usd.png" alt=""></a>
                     <?php
-                    $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo para QSM6");
+                    $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/order">{!!$local!!}</a> </div>
                 </li>
+               
                
                 
                 
                     <li> <a class="featured_img" href="#"><img src="images/demo.png" alt=""></a>
                     <?php
                     $local2=  utf8_encode("Ingresa al demo del simulador de pruebas de personalidad");
-                    ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec">{!!$local2!!}</a> </div>
-                </li>
-                <li> <a class="featured_img" href="#"><img src="images/QSMgalapagos.jpg" alt=""></a>
-                    <?php
-                    $local=  utf8_encode("Encuentra el cronograma de méritos y oposición");
-                    ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/09/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-Galapagos-2017-1.pdf">{!!$local!!}</a> </div>
-                </li>
-                
-                    <li> <a class="featured_img" href="#"><img src="images/bilingue.png" alt=""></a>
-                    <?php
-                    $local2=  utf8_encode("Encuentra todo lo que necesitas saber");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec">{!!$local2!!}</a> </div>
                 </li>
@@ -213,72 +224,5 @@
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/wow.min.js"></script> 
 <script src="assets/js/custom.js"></script>
-
-<script src="assets/js/jquery.min.js"></script> 
-<script src="assets/js/bootstrap.min.js"></script> 
-<script src="assets/js/wow.min.js"></script> 
-<script src="assets/js/custom.js"></script>
-
-<script>
-	$(document).ready(function(){
-		$('#result-elegible').hide(); 
-		
-		$("#btn-search-suitable").on("click", function() {
-			if( $("#ci").val() === '' ){
-				alert('Se requiere un numero de cedula');
-			} else {
-				$('#result-elegible').show();
-				var url = "{{ url('/teacher-search-suitable/search') }}";
-				$.ajax({
-					type: "POST",
-					url: url,
-					data: $('#frmsearch').serialize(),
-					success: function(data){
-						$.each(data, function(i, item) {
-							if(item.flag != 'No existe su cedula'){
-								$('table tr').slice(1).remove();
-								$("#grid-elegible tbody").append(item.value);
-
-							} else {
-								$('table tr').slice(1).remove();
-								$("#grid-elegible tbody").append(item.value);
-							}							
-						});	
-					}
-				});
-			}
-			return false;
-		});
-
-		$("#btn-search-elegible").on("click", function() {
-			if( $("#ci").val() === '' ){
-				alert('Se requiere un numero de cedula');
-			} else {
-				$('#result-elegible').show();
-				var url = "{{ url('/teacher-search-elegible/search') }}";
-				$.ajax({
-					type: "POST",
-					url: url,
-					data: $('#frmsearch').serialize(),
-					success: function(data){
-						$.each(data, function(i, item) {
-							if(item.flag != 'No existe su cedula'){
-								$('table tr').slice(1).remove();
-								$("#grid-elegible tbody").append(item.value);
-
-							} else {
-								$('table tr').slice(1).remove();
-								$("#grid-elegible tbody").append(item.value);
-							}							
-						});	
-					}
-				});
-			}
-			return false;
-		});
-		
-	});
-</script>
-
 </body>
 </html>
