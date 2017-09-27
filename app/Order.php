@@ -8,5 +8,5 @@ class Order extends Model
 {
     //
 	protected $table = 'orders';
-	protected $fillable = ['commerce_id','customer_id','order_description','order_amount','order_id','response_url','state'];
+	protected $fillable = ['code','commerce_id','customer_id','order_description','order_amount','order_id','response_url','state'];
 }

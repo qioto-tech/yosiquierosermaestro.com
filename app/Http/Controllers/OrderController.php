@@ -50,32 +50,47 @@ class OrderController extends Controller
     	->where('id',$request->product)
     	->get();
     	
-    	$person = new Person();
-    	$validator = $this->validate($request, [
-    			'customer_ci'=>['required','max:255'],
-    			'customer_name'=>['required','max:255'],
-    			'customer_lastname'=>['required','max:255'],
-    			'customer_phone'=>['required'],
-    			'customer_address'=>['required'],
-    			'customer_email'=>['required'],
-    			'product'=>['required'],
-    	]);
     	
-    	$person->fill($request->all());
-    	$person->save();
+    	$person = DB::table('persons')
+    		->where('customer_ci',$request->customer_ci)
+    		->get();
+    	
+    	$customer_id = $person[0]->id;
+    	if ( count($person) == 0 )
+    	{
+    		$person = new Person();
+	    	$validator = $this->validate($request, [
+	    			'customer_ci'=>['required','max:255'],
+	    			'customer_name'=>['required','max:255'],
+	    			'customer_lastname'=>['required','max:255'],
+	    			'customer_phone'=>['required'],
+	    			'customer_address'=>['required'],
+	    			'customer_email'=>['required'],
+	    			'product'=>['required'],
+	    	]);
+	    	
+	    	$person->fill($request->all());
+	    	$person->save();
+	    	$customer_id = $person->id;
+    	}
+    	
     	
     	
     	$order = new Order();
     	
     	$order->commerce_id = '8226';
-    	$order->customer_id = $person->id;
+    	$order->customer_id = $customer_id;
     	$order->product_description = $product[0]->description;
     	$order->product_amount = $product[0]->amount;
     	$order->product_id = $product[0]->id;
-    	$order->response_url = 'https://www.pagosqioto.com/payment/';
+    	$order->response_url = 'https://www.pagosqioto.com/register/';
     	$order->state = '00';
     	
     	$order->save();
+    	
+    	DB::table('orders')
+    	->where('id',$order->id)
+    	->update(['code' => 'QSM'.$order->id]);
     	
     	$url = $this->pagosmedios($order->id);
     	$array = json_decode($url);
@@ -133,7 +148,7 @@ class OrderController extends Controller
     	$orders = DB::table('orders')
     	->join('persons', 'orders.customer_id', '=' ,'persons.id')
     	->where('orders.id',$id)
-    	->select('orders.commerce_id','persons.customer_ci as pci','persons.customer_name','persons.customer_lastname','persons.customer_phone','persons.customer_address','persons.customer_email','orders.product_description','orders.product_amount','orders.product_id','orders.response_url')
+    	->select('orders.code','orders.commerce_id','persons.customer_ci as pci','persons.customer_name','persons.customer_lastname','persons.customer_phone','persons.customer_address','persons.customer_email','orders.product_description','orders.product_amount','orders.product_id','orders.response_url')
     	->get();
     	
     	$url = 'https://app.pagomedios.com/api/setorder/'; //URL del servicio web REST
@@ -150,7 +165,7 @@ class OrderController extends Controller
     				'customer_language' => 'es',  //Idioma del tarjeta habiente
     				'order_description' => $value->product_description,  //Descripción de la órden
     				'order_amount' => $value->product_amount, //Monto total de la órden
-    				'order_id' => $id,
+    				'order_id' => $value->code,
     				'response_url' => $value->response_url,
     		);
     	}

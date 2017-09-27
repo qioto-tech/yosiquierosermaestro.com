@@ -15,6 +15,7 @@ class CreateOrderTable extends Migration
     {
     	Schema::create('orders', function ( $table ) {
     		$table->increments('id');
+    		$table->string('code',11);
     		$table->string('commerce_id',11);
     		$table->string('customer_id');
     		$table->string('product_description');
