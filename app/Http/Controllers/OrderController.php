@@ -55,7 +55,7 @@ class OrderController extends Controller
     		->where('customer_ci',$request->customer_ci)
     		->get();
     	
-    	$customer_id = $person[0]->id;
+    	
     	if ( count($person) == 0 )
     	{
     		$person = new Person();
@@ -72,6 +72,8 @@ class OrderController extends Controller
 	    	$person->fill($request->all());
 	    	$person->save();
 	    	$customer_id = $person->id;
+    	} else {
+    		$customer_id = $person[0]->id;
     	}
     	
     	
@@ -189,5 +191,29 @@ class OrderController extends Controller
     	
     	
     	return $response;
+    }
+    
+    public function approved( $order)
+    {
+    	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->where('orders.code',$order)
+    	->select('orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    		->get();
+    	$usuario = 'Aspirante_'.$order;
+    	$password = $usuario;
+    	
+    	return view('approved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
+    }
+    
+    public function disapproved($order)
+    {
+    	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->where('orders.code',$order)
+    	->select('orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->get();
+    	$usuario = 'No se realizo el pago';
+    	$password = '';
+    	
+    	return view('disapproved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
     }
 }
