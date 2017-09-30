@@ -23,6 +23,7 @@ class CreateOrderTable extends Migration
     		$table->string('product_id');
     		$table->string('response_url');
     		$table->string('state',5);
+    		$table->string('password_ne',10);
     		$table->timestamps();
     	});
     		//

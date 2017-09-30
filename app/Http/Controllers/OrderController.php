@@ -85,8 +85,8 @@ class OrderController extends Controller
     	$order->product_description = $product[0]->description;
     	$order->product_amount = $product[0]->amount;
     	$order->product_id = $product[0]->id;
-    	//$order->response_url = 'https://www.pagosqioto.com/register/';
-    	$order->response_url = 'https://pagosqioto.local/register/';
+    	$order->response_url = 'https://www.pagosqioto.com/register/';
+    	//$order->response_url = 'https://pagosqioto.local/register/';
     	$order->state = 'Pendiente';
     	
     	$order->save();
@@ -198,10 +198,10 @@ class OrderController extends Controller
     {
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->where('orders.code',$order)
-    	->select('orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('orders.product_description', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
     		->get();
     	$usuario = 'Aspirante_'.$order;
-    	$password = $usuario;
+    	$password = $datos[0]->password_ne;
     	
     	return view('approved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
     }
