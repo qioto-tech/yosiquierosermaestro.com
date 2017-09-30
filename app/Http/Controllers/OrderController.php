@@ -159,15 +159,15 @@ class OrderController extends Controller
     	
     	foreach ($orders as $value){
     		$dataOrden = array(	'commerce_id' => $value->commerce_id, //ID unico por comercio
-    				'customer_id' => $value->pci, //Identificación del tarjeta habiente (RUC, Cédula, Pasaporte)
+    				'customer_id' => $value->pci, //Identificaciï¿½n del tarjeta habiente (RUC, Cï¿½dula, Pasaporte)
     				'customer_name' => $value->customer_name, //Nombres del tarjeta habiente
     				'customer_lastname' => $value->customer_lastname, //Apellidos del tarjeta habiente
-    				'customer_phones' => $value->customer_phone,  //Teléfonos del tarjeta habiente
-    				'customer_address' => $value->customer_address,  //Dirección del tarjeta habiente
-    				'customer_email' => $value->customer_email,  //Correo electrónico del tarjeta habiente
+    				'customer_phones' => $value->customer_phone,  //Telï¿½fonos del tarjeta habiente
+    				'customer_address' => $value->customer_address,  //Direcciï¿½n del tarjeta habiente
+    				'customer_email' => $value->customer_email,  //Correo electrï¿½nico del tarjeta habiente
     				'customer_language' => 'es',  //Idioma del tarjeta habiente
-    				'order_description' => $value->product_description,  //Descripción de la órden
-    				'order_amount' => $value->product_amount, //Monto total de la órden
+    				'order_description' => $value->product_description,  //Descripciï¿½n de la ï¿½rden
+    				'order_amount' => $value->product_amount, //Monto total de la ï¿½rden
     				'order_id' => $value->code,
     				'response_url' => $value->response_url,
     		);
