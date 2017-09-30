@@ -41,7 +41,7 @@
     </nav>
     <form id="searchForm" method="POST" action="/search/search">
       {{ csrf_field() }}
-      <input type="text" placeholder="Buscar por cedula...." id="ci" name="ci">
+      <input type="text" placeholder="Buscar por cedula...." id="ci_search" name="ci_search">
       <input type="submit" value="" id="btn-submit" name="btn-submit">
     </form>
   </div>

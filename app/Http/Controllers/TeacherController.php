@@ -194,7 +194,7 @@ class TeacherController extends Controller
     	
     	$idoneos = Teacher::join('personalities','teachers.ci','=','personalities.ci')
     	->join('reasonings','teachers.ci','=','reasonings.ci')
-    	->where('teachers.ci',$request->ci)
+    	->where('teachers.ci',$request->ci_search)
     	->select('teachers.ci','teachers.name','personalities.opinion as personalidad','reasonings.opinion as razonamiento')
     	->get();
     	if(count($idoneos) > 0){
