@@ -32,5 +32,5 @@ Route::get('/', function () {
 	Route::get('/elegible', 'TeacherController@elegible');
 	Route::get('/aprobado/{order}', 'OrderController@approved');
 	Route::get('/reprobado/{order}', 'OrderController@disapproved');
-	
+	Route::post('/search/search', 'TeacherController@search');
 	

@@ -85,8 +85,9 @@ class OrderController extends Controller
     	$order->product_description = $product[0]->description;
     	$order->product_amount = $product[0]->amount;
     	$order->product_id = $product[0]->id;
-    	$order->response_url = 'https://www.pagosqioto.com/register/';
-    	$order->state = '00';
+    	//$order->response_url = 'https://www.pagosqioto.com/register/';
+    	$order->response_url = 'https://pagosqioto.local/register/';
+    	$order->state = 'Pendiente';
     	
     	$order->save();
     	

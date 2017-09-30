@@ -1,13 +1,9 @@
 @extends('layouts.template')
 
-@section('title', 'Idoneo')
+@section('title', 'Busqueda')
 
 @section('script')
 @endsection
-
-
-
-@section('sub-title', 'Consulta si eres idoneo')
 
 @section('info')
               <div class="single_stuff wow fadeInDown">
@@ -19,14 +15,7 @@
                   </div>
                   <div>
                   	<p>
-						{!! Form::open([null, null, 'class'=>'form-inline', 'role'=>'form','name'=>'frmsearch','id'=>'frmsearch']) !!}
-						  <div class="form-group ui-widget">
-						    <label class="sr-only" for="name">Numero de cedula</label>
-						    {!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'60', 'id'=>'ci', 'name'=>'ci']) !!}       
-						  </div>
-						  <button type="button" class="btn btn-default" id="btn-search-suitable">Buscar elegible</button>
-						
-						{!! Form::close() !!}
+
                   	</p>
                   	<p>
           <table id="grid-elegible" class="table table-bordered  table-hover">
@@ -36,6 +25,36 @@
                 <th>Detalle</th>
               </tr>
             </thead>
+            	@if (count($datos) === 1)
+            		@foreach($datos as $value)
+		            	<tr id="">
+		    				<td>CI : </td>
+		    				<td>{{ $value->ci }}</td>
+		    			</tr>
+		     			<tr id="$value->id">
+		    				<td>Nombre : </td>
+		    				<td>{{ $value->name }}</td>
+		    			</tr>
+		    			<tr id="$value->id">
+		    				<td>Personalidad : </td>
+		    				<td>{{ $value->personalidad }}</td>
+		    			</tr>
+		    			<tr id="$value->id">
+		    				<td>Razonamiento : </td>
+		    				<td>{{ $value->razonamiento }}</td>
+		    			</tr>
+		    			<tr id="$value->id">
+		    				<td>Su estado es : </td>
+		    				<td><span style='color:#d9534f'>{{ $selection }}</span></td>
+		    			</tr>
+            
+ 		           	@endforeach	 
+ 		        @else
+    				<tr>
+		    				<td colspan="2">No se encontro en la base de datos</td>
+		    		</tr>
+				@endif   	
+            	
 			<tfoot>
 			<tr>
 				<th colspan="2">
@@ -54,5 +73,4 @@
             </div>
 <br><br>	
 @endsection
-
 

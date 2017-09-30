@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Quiero ser maestro  &mdash;  </title>
+<title>Quiero ser maestro  &mdash;  @yield('title')</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,8 +39,9 @@
         </div>
       </div>
     </nav>
-    <form id="searchForm">
-      <input type="text" placeholder="Search...">
+    <form id="searchForm" method="POST" action="/search/search">
+      {{ csrf_field() }}
+      <input type="text" placeholder="Buscar por cedula...">
       <input type="submit" value="">
     </form>
   </div>
