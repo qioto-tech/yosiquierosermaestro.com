@@ -7,6 +7,7 @@ use App\Product;
 use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\Envio_Mensaje;
 use Redirect;
 
 class OrderController extends Controller
@@ -198,10 +199,12 @@ class OrderController extends Controller
     {
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->where('orders.code',$order)
-    	->select('orders.product_description', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
     		->get();
-    	$usuario = 'Aspirante_'.$order;
+    	$usuario = 'Aspirante_'.$datos[0]->code;
     	$password = $datos[0]->password_ne;
+        
+        $this->dispatch(new Envio_Mensaje($datos[0]));
     	
     	return view('approved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
     }

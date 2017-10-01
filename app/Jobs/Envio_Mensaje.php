@@ -7,21 +7,22 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Mail\Mailer;
+use App\Order;
 
-class Envio_Mensaje extends Job implements SelfHandling
+class Envio_Mensaje extends Job 
 
 {
-    protected $invitacion;
+    protected $order;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Invitaciones_Amigos $invitacion)
+    public function __construct(Order $order)
     {
         //
-          $this->invitacion = $invitacion;
+          $this->order = $order;
     }
 
     /**
@@ -33,15 +34,16 @@ class Envio_Mensaje extends Job implements SelfHandling
     public function handle(Mailer $mailer)
     {
         $data = [
-            'title'  => "Mensaje para iWaNaTrip.com",
-            'nombrede'  => $this->invitacion->invitacion_de,
-            'nombrepara'   => "info@iwannatrip.com",
+            'title'  => "Confirmación de compra Capacitate Ecuador",
+            'nombrede'  => "Capacitate Ecuador",
+            'usuario'   => "Aspirante_".$this->order->code,
+            'password'   => $this->order->password_ne,
             
         ];
         
-        $mailer->send('emails.auth.inviteFriend', $data, function($message) {
-            $message->to( $this->invitacion->correo, $this->invitacion->invitacion_para)
-                    ->subject("Invitación iWaNaTrip.com");
+        $mailer->send('confirmEmail', $data, function($message) {
+            $message->to("adrian.dcn@hotmail.com")
+                    ->subject("Confirmacion Capacitate Ecuador");
         });
     }
     
