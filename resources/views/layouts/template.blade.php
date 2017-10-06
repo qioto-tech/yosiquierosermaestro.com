@@ -223,6 +223,8 @@
 <script>
 	$(document).ready(function(){
 		$('#result-elegible').hide(); 
+		$('#resultado-test').hide(); 
+	
 		
 		$("#btn-search-suitable").on("click", function() {
 			if( $("#ci").val() === '' ){
@@ -271,6 +273,25 @@
 								$('table tr').slice(1).remove();
 								$("#grid-elegible tbody").append(item.value);
 							}							
+						});	
+					}
+				});
+			}
+			return false;
+		});
+		$("#btn-validate").on("click", function() {
+			if( $("#usuario").val() === '' || $("#password").val() === '' || $("#sexo").val() == 0){
+				alert('Se requiere todos los campos');
+			} else {
+				$('#resultado-test').show();
+				var url = "{{ url('/search-result/result') }}";
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: $('#frmvalidate').serialize(),
+					success: function(data){
+						$.each(data, function(i, item) {
+								$("#content-body").html(item.value);							
 						});	
 					}
 				});

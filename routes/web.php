@@ -13,6 +13,7 @@
 
 Route::resource('/teacher','TeacherController');
 Route::resource('/order','OrderController');
+Route::resource('/resultado','ResultController');
 
 
 Route::get('/', function () {
@@ -33,4 +34,5 @@ Route::get('/', function () {
 	Route::get('/aprobado/{order}', 'OrderController@approved');
 	Route::get('/reprobado/{order}', 'OrderController@disapproved');
 	Route::post('/search/search', 'TeacherController@search');
+	Route::post('/search-result/result', 'ResultController@validate_result');
 	
