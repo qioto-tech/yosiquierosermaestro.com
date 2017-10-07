@@ -171,10 +171,13 @@ class TeacherController extends Controller
     			$cadena .= "<tr id='" . $value->id . "'>";
     			$cadena .=  "<td>" . $value->ci . "</td>";
     			$cadena .=  "<td>" . $value->name . "</td>";
-    			$cadena .=  "<td>" . $value->specialty . "</td>";
+    			if($value->opinion!="NO ELEGIBLE")
+                        $cadena .=  "<td>" . $value->specialty . "</td>";
+                        //opinion=dictamen
+                        //know=saberes
     			$cadena .=  "<td>" . $value->opinion. "</td>";
-    			$tmp = ($value->know)?'SI':'NO';
-    			$cadena .=  "<td>" . $tmp . "</td>";
+    			//$tmp = ($value->know)?'SI':'NO';
+    			//$cadena .=  "<td>" . $tmp . "</td>";
     			$cadena .=  "</tr>";
     		}
     		

@@ -102,12 +102,12 @@
             <h2 class="yellow_bg">Vinculos importantes</h2>
             <div class="middlebar_content_inner wow fadeInUp">
               <ul class="middlebar_nav">
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="{{ URL::asset('images/Tips.jpg') }}" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="{{ URL::asset('images/cronograma.png') }}" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="{{ URL::asset('images/Lista.png') }}" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="{{ URL::asset('images/archivo.png') }}" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica tu idoneidad QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="{{ URL::asset('images/visto.png') }}" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica si eres elegible QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="www.educacion.gob.ec"><img src="{{ URL::asset('images/indice.png') }}" alt=""></a> <a class="mbar_title"  target="_blank" href="www.educacion.gob.ec">Ministerio de Educacion</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/tips') }}"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" href="{{ URL::asset('/tips') }}">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="images/cronograma.png" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="images/Lista.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
+                <li> <a class="mbar_thubnail" href="{{ URL::asset('/idoneo') }}"><img src="images/archivo.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/idoneo') }}">Verifica tu idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/elegible') }}"><img src="images/visto.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/elegible') }}">Verifica si eres elegible QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="https://www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://www.educacion.gob.ec">Ministerio de Educacion</a> </li>
                 
                 
                 
@@ -133,34 +133,30 @@
               <ul class="featured_nav">
                   
                   
-                   <li> <a class="featured_img" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="{{ URL::asset('images/test.jpg') }}" alt=""></a>
+                      <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="images/test.jpg" alt=""></a>
                     <?php
-                    $localx=  utf8_encode("Prepárate para las pruebas");
+                    $localx=  utf8_encode("PrepÃ¡rate para las pruebas");
                     ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/tips">{!!$localx!!}</a> </div>
+                  <div class="featured_title"> <a class="" href="{{ URL::asset('/tips') }}">{!!$localx!!}</a> </div>
                 </li>
+                
                 
                 
                
                 
-                  <li> <a class="featured_img" target="_blank"  href="http://www.yosiquierosermaestro.com/order"><img src="{{ URL::asset('images/5usd.png') }}" alt=""></a>
+                  <li> <a class="featured_img"  href="{{ URL::asset('/order') }}"><img src="images/5usd.png" alt=""></a>
                     <?php
-                    $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo para QSM6");
+                    $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo");
                     ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/order">{!!$local!!}</a> </div>
+                  <div class="featured_title"> <a class=""  href="{{ URL::asset('/order') }}">{!!$local!!}</a> </div>
                 </li>
                
                 
                 
-                    <li> <a class="featured_img" href="#"><img src="{{ URL::asset('images/demo.png') }}" alt=""></a>
-                    <?php
-                    $local2=  utf8_encode("Ingresa al demo del simulador de pruebas de personalidad");
-                    ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec">{!!$local2!!}</a> </div>
-                </li>
+                    
                 <li> <a class="featured_img" href="#"><img src="{{ URL::asset('images/QSMgalapagos.jpg') }}" alt=""></a>
                     <?php
-                    $local=  utf8_encode("Encuentra el cronograma de méritos y oposición");
+                    $local=  utf8_encode("Encuentra el cronograma de mÃ©ritos y oposiciÃ³n");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/09/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-Galapagos-2017-1.pdf">{!!$local!!}</a> </div>
                 </li>

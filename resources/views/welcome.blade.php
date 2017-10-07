@@ -61,14 +61,14 @@
                   <div class="stuff_article_inner"> <span class="stuff_date">Sep <strong>1</strong></span>
                     <h2><a href="#">Pruebas de personalidad</a></h2>
                       <?php
-                    $personalidad=utf8_encode("Para obtener la elegibilidad el primer paso es rendir las pruebas de personalidad. El Ministerio de Educación con coordinación con el Ineval están preparando estas pruebas cuyo objetivo es determinar variantes como drogadicción, alcholismo, maltrato entre otras. Estas pruebas darán un dictamen de personalidad de apto o no apto dependiendo de los resultados. Las fechas definitivas aún no se han definido pero estaremos pendienetes para poder informar a la comunidad oportunamente.");
-                    $personalidax=utf8_encode("Te recomendamos empezar a prepararte para estas pruebas ya que el tiempo de aviso o publicación de las mismas no será de más de una semana y no te dará tiempo para tomar las acciones correspondientes.");
+                    $personalidad=utf8_encode("Para obtener la elegibilidad el primer paso es rendir las pruebas de personalidad. El Ministerio de Educaciï¿½n con coordinaciï¿½n con el Ineval estï¿½n preparando estas pruebas cuyo objetivo es determinar variantes como drogadicciï¿½n, alcholismo, maltrato entre otras. Estas pruebas darï¿½n un dictamen de personalidad de apto o no apto dependiendo de los resultados. Las fechas definitivas aï¿½n no se han definido pero estaremos pendienetes para poder informar a la comunidad oportunamente.");
+                    $personalidax=utf8_encode("Te recomendamos empezar a prepararte para estas pruebas ya que el tiempo de aviso o publicaciï¿½n de las mismas no serï¿½ de mï¿½s de una semana y no te darï¿½ tiempo para tomar las acciones correspondientes.");
                     
-                    $personalidad3=utf8_encode("Existen varios simuladores gratuitos en internet cuyo objetivo es mostrar a los docentes una prueba de lo que se consideraría se tomarán en las pruebas. Te dejamos algunos vinculos de estos simuladores gratuitos");
+                    $personalidad3=utf8_encode("Existen varios simuladores gratuitos en internet cuyo objetivo es mostrar a los docentes una prueba de lo que se considerarï¿½a se tomarï¿½n en las pruebas. Te dejamos algunos vinculos de estos simuladores gratuitos");
                     
-                    $personalidad4=utf8_encode("Si deseas una capacitación más específica sobre la cual tu podras entrenarte en un ambiente similar a los propuestos por la entidad regulatoria el cual te dará la confianza y los recursos necesarios para que estes listo para tu exámen de elegibilidad ");
+                    $personalidad4=utf8_encode("Si deseas una capacitaciï¿½n mï¿½s especï¿½fica sobre la cual tu podras entrenarte en un ambiente similar a los propuestos por la entidad regulatoria el cual te darï¿½ la confianza y los recursos necesarios para que estes listo para tu exï¿½men de elegibilidad ");
                     
-                    $personalidad5=utf8_encode("Recuerda que mientras más te prepares para las pruebas, más oportunidades tendrás para obtener la elegibilidad y posterior un nombramiento definitivo dentro del Magisterio Físcal... A quien no le cae mal un trabajo fijo y seguro en estos tiempos....SUERTE!!! ");
+                    $personalidad5=utf8_encode("Recuerda que mientras mï¿½s te prepares para las pruebas, mï¿½s oportunidades tendrï¿½s para obtener la elegibilidad y posterior un nombramiento definitivo dentro del Magisterio Fï¿½scal... A quien no le cae mal un trabajo fijo y seguro en estos tiempos....SUERTE!!! ");
                     
                     ?>
                     
@@ -79,11 +79,11 @@
                     
                     <p>{!!$personalidad3!!}</p>
                     <p>
-                        <a target="_blank" href="http://www.forosecuador.ec/forum/ecuador/educación-y-ciencia/116548-simulador-de-pruebas-de-personalidad-quiero-ser-maestro-2017">Simulador Gratis 1</a>
+                        <a target="_blank" href="http://www.forosecuador.ec/forum/ecuador/educaciï¿½n-y-ciencia/116548-simulador-de-pruebas-de-personalidad-quiero-ser-maestro-2017">Simulador Gratis 1</a>
                     </p>
                     
                     <p>
-                        <a  target="_blank" href="http://www.forosecuador.ec/forum/ecuador/educación-y-ciencia/116562-simulador-de-pruebas-psicométicas-quiero-ser-maestro-6-ministerio-de-educación">Simulador Gratis 2</a>
+                        <a  target="_blank" href="http://www.forosecuador.ec/forum/ecuador/educaciï¿½n-y-ciencia/116562-simulador-de-pruebas-psicomï¿½ticas-quiero-ser-maestro-6-ministerio-de-educaciï¿½n">Simulador Gratis 2</a>
                     </p>
                     
                     
@@ -116,11 +116,11 @@
                   <div class="stuff_article_inner"> <span class="stuff_date">Sep <strong>1</strong></span>
                     <h2><a href="#">Consulta tu idoneidad y elegibilidad</a></h2>
                       <?php
-                    $personalidad=utf8_encode("Para facilitar la vida a los aspirates a docentes del Ecuador, se ha desarrollado una plataforma de consulta basada en los archivos que ha publicado el Ministerio de Educación del Ecuador");
+                    $personalidad=utf8_encode("Para facilitar la vida a los aspirates a docentes del Ecuador, se ha desarrollado una plataforma de consulta basada en los archivos que ha publicado el Ministerio de Educaciï¿½n del Ecuador");
                     $personalidad2=utf8_encode("Para consultar el estado de tu idoneidad has click ");
                     $personalidad3=utf8_encode("Para consultar el estado de tu elegibilidad has click ");
                     
-                    $personalidad4=utf8_encode("Para verificar los archivos en los archivos oficiales del Ministerio de Educación has click  ");
+                    $personalidad4=utf8_encode("Para verificar los archivos en los archivos oficiales del Ministerio de Educaciï¿½n has click  ");
                     ?>
                     
                     <p>{!!$personalidad!!}</p>
@@ -140,9 +140,9 @@
                     <h2><a href="pages/single.html">Errores en el proceso de inscripcion</a></h2>
                     
                     <?php
-                    $local3=  utf8_encode("El Ministerio de Educación implemento un sistema de recepción de errores para las personas que tengan inconvenientes dentro del sistema");
-                    $local4=  utf8_encode("Como funciona: Se deberá llenar un formulario con el error que se tiene en el sistema. El Ministerio ha dispuesto 48 horas para la resolución de estos errores");
-                    $local5=  utf8_encode("El error más común es el reseteo de clave. Este proceso puede demorar hasta 72 horas debido a la gran cantidad de aspirantes que no pueden acceder a la cuenta debido a sus credenciales del sistema. Se recomienda enviar el formulario una sola vez ya que si el formulario se remite 2 o más veces las claves y correos se resetarán las veces que se hayan enviado los formularios");
+                    $local3=  utf8_encode("El Ministerio de Educaciï¿½n implemento un sistema de recepciï¿½n de errores para las personas que tengan inconvenientes dentro del sistema");
+                    $local4=  utf8_encode("Como funciona: Se deberï¿½ llenar un formulario con el error que se tiene en el sistema. El Ministerio ha dispuesto 48 horas para la resoluciï¿½n de estos errores");
+                    $local5=  utf8_encode("El error mï¿½s comï¿½n es el reseteo de clave. Este proceso puede demorar hasta 72 horas debido a la gran cantidad de aspirantes que no pueden acceder a la cuenta debido a sus credenciales del sistema. Se recomienda enviar el formulario una sola vez ya que si el formulario se remite 2 o mï¿½s veces las claves y correos se resetarï¿½n las veces que se hayan enviado los formularios");
                     $local6=  utf8_encode("Para acceder al formulario haga click ");
                     $local7=  utf8_encode("Si su solicitud no ha sido atendio en el transcurso de 72 horas puede escribir al correo quierosermaestro@educacion.gob.ec");
                     ?>
@@ -177,10 +177,10 @@
                     <h2><a href="pages/single.html">Inicio proceso de Elegibilidad</a></h2>
                     
                     <?php
-                    $local1=  utf8_encode("El Ministerio de Educación anunció que el concurso de méritos y oposición 'Quiero Ser Maestro 6' se abre del 1 al 10 de agosto.
-Durante este periodo, los maestros del país podrán participar por una plaza de trabajo en instituciones de educación pública.
-El ministro de Educación, Fander Falcolní, señaló este lunes en rueda de prensa, que unos 26.000 docentes que ya están vinculados a la educación pública a través de contratos, podrán participar en este concurso para obtener un nombramiento fijo.
-El proceso inicia con la postulación a través del sitio web del Ministerio");
+                    $local1=  utf8_encode("El Ministerio de Educaciï¿½n anunciï¿½ que el concurso de mï¿½ritos y oposiciï¿½n 'Quiero Ser Maestro 6' se abre del 1 al 10 de agosto.
+Durante este periodo, los maestros del paï¿½s podrï¿½n participar por una plaza de trabajo en instituciones de educaciï¿½n pï¿½blica.
+El ministro de Educaciï¿½n, Fander Falcolnï¿½, seï¿½alï¿½ este lunes en rueda de prensa, que unos 26.000 docentes que ya estï¿½n vinculados a la educaciï¿½n pï¿½blica a travï¿½s de contratos, podrï¿½n participar en este concurso para obtener un nombramiento fijo.
+El proceso inicia con la postulaciï¿½n a travï¿½s del sitio web del Ministerio");
                     ?>
                     <p>
                         {!!$local1!!}
@@ -209,12 +209,12 @@ El proceso inicia con la postulación a través del sitio web del Ministerio");
             <h2 class="yellow_bg">Vinculos importantes</h2>
             <div class="middlebar_content_inner wow fadeInUp">
               <ul class="middlebar_nav">
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/tips') }}"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" href="{{ URL::asset('/tips') }}">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="images/cronograma.png" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="images/Lista.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="images/archivo.png" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica tu idoneidad QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="images/visto.png" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica si eres elegible QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="www.educacion.gob.ec">Ministerio de Educacion</a> </li>
+                <li> <a class="mbar_thubnail" href="{{ URL::asset('/idoneo') }}"><img src="images/archivo.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/idoneo') }}">Verifica tu idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/elegible') }}"><img src="images/visto.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/elegible') }}">Verifica si eres elegible QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="https://www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://www.educacion.gob.ec">Ministerio de Educacion</a> </li>
                 
                 
                 
@@ -240,34 +240,34 @@ El proceso inicia con la postulación a través del sitio web del Ministerio");
               <ul class="featured_nav">
                   
                   
-                   <li> <a class="featured_img" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="images/test.jpg" alt=""></a>
+                   <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="images/test.jpg" alt=""></a>
                     <?php
-                    $localx=  utf8_encode("Prepárate para las pruebas");
+                    $localx=  utf8_encode("PrepÃ¡rate para las pruebas");
                     ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/tips">{!!$localx!!}</a> </div>
+                  <div class="featured_title"> <a class="" href="{{ URL::asset('/tips') }}">{!!$localx!!}</a> </div>
                 </li>
                 
                 
                
                 
-                  <li> <a class="featured_img" target="_blank"  href="http://www.yosiquierosermaestro.com/order"><img src="images/5usd.png" alt=""></a>
+                  <li> <a class="featured_img"  href="{{ URL::asset('/order') }}"><img src="images/5usd.png" alt=""></a>
                     <?php
                     $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo");
                     ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/order">{!!$local!!}</a> </div>
+                  <div class="featured_title"> <a class=""  href="{{ URL::asset('/order') }}">{!!$local!!}</a> </div>
                 </li>
                
                 
                 
-                    <li> <a class="featured_img" href="#"><img src="images/demo.png" alt=""></a>
+                    <li> <a class="featured_img" href="{{ URL::asset('/order') }}"><img src="images/demo.png" alt=""></a>
                     <?php
                     $local2=  utf8_encode("Ingresa al demo del simulador de pruebas de personalidad");
                     ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec">{!!$local2!!}</a> </div>
+                  <div class="featured_title"> <a class="" href="{{ URL::asset('/order') }}">{!!$local2!!}</a> </div>
                 </li>
                 <li> <a class="featured_img" href="#"><img src="images/QSMgalapagos.jpg" alt=""></a>
                     <?php
-                    $local=  utf8_encode("Encuentra el cronograma de méritos y oposición");
+                    $local=  utf8_encode("Encuentra el cronograma de mÃ©ritos y oposiciÃ³n");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/09/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-Galapagos-2017-1.pdf">{!!$local!!}</a> </div>
                 </li>

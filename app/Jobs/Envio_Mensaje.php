@@ -42,7 +42,7 @@ class Envio_Mensaje extends Job
         ];
         
         $mailer->send('confirmEmail', $data, function($message) {
-            $message->to("adrian.dcn@hotmail.com")
+            $message->to($this->order->customer_email)
                     ->subject("Confirmacion Capacitate Ecuador");
         });
     }
