@@ -124,7 +124,7 @@ class ResultController extends Controller
 		$usu_password = md5( $request->password);
 		$usuario = DB::connection('mecapacitoecuador')->select('	
  		SELECT us.id FROM `TB_USUARIOS` tmp
- 		inner join mood_user us on (us.username = tmp.usu_usuario)
+ 		inner join mood_user us on (UPPER(us.username) = UPPER(tmp.usu_usuario))
  		where tmp.usu_usuario = ? and tmp.usu_password = ?',[$usu_usuario,$usu_password]);
 		
 		if(count($usuario) > 0){
