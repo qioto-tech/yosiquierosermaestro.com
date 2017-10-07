@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Quiero ser maestro  &mdash;  </title>
-<meta charset="utf-8">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -61,21 +61,21 @@
                   <div class="stuff_article_inner"> <span class="stuff_date">Sep <strong>1</strong></span>
                     <h2><a href="#">Capacitacion para pruebas de personalidad</a></h2>
                       <?php
-                    $personalidad=utf8_encode("El objetivo principal de las pruebas de personalidad es determinar las el desenvolvimiento psicológico del aspirante en un entorno estudiantil de niños y jóvenes. El Ministerio de Educación ha realizado esfuerzos para poder segregar personalidades adictivas o violentas que puedan ser perjudiciales para la educación.");
-                    $personalidax=utf8_encode("Las pruebas de personalidad no tienen respuestas correctas o incorrectas ya que estas preguntas son interlazadas unas con otras y son diseñadas para reconocer que el aspirante esta mintiendo en la lógica de su respuesta. Es por eso que el principal secreto en estas pruebas de personalidad es la coherencia de contestación y tiempos de respuesta");
+                    $personalidad=utf8_encode("El objetivo principal de las pruebas de personalidad es determinar las el desenvolvimiento psicolÃ³gico del aspirante en un entorno estudiantil de niÃ±os y jÃ³venes. El Ministerio de EducaciÃ³n ha realizado esfuerzos para poder segregar personalidades adictivas o violentas que puedan ser perjudiciales para la educaciÃ³n.");
+                    $personalidax=utf8_encode("Las pruebas de personalidad no tienen respuestas correctas o incorrectas ya que estas preguntas son interlazadas unas con otras y son diseÃ±adas para reconocer que el aspirante esta mintiendo en la lÃ³gica de su respuesta. Es por eso que el principal secreto en estas pruebas de personalidad es la coherencia de contestaciÃ³n y tiempos de respuesta");
                     
-                    $personalidad3=utf8_encode("Ejemplo: En la pregunta 20 te preguntan algo como: Te gusta ir a fiestas y beber socialmente?.... En la pregunta 52 que esta enlazada te preguntan lo mismo pero de forma diferente Ejemplo te gusta tomar solo o acompañado?. Si te das cuenta estas preguntas tienen relación y se deben responder coherentemente.");
+                    $personalidad3=utf8_encode("Ejemplo: En la pregunta 20 te preguntan algo como: Te gusta ir a fiestas y beber socialmente?.... En la pregunta 52 que esta enlazada te preguntan lo mismo pero de forma diferente Ejemplo te gusta tomar solo o acompaÃ±ado?. Si te das cuenta estas preguntas tienen relaciÃ³n y se deben responder coherentemente.");
                     
                     $personalidad4=utf8_encode("1: Responder con la verdad y coherentemente todas las preguntas");
                     $personalidad5=utf8_encode("2: No contradecirnos");
-                    $personalidad7=utf8_encode("3: Paciencia, la prueba puede llegar a demorarse aproximadamente 50 minutos cuyo objetivo es ofuscar la relación entre las primeras preguntas y las últimas");
+                    $personalidad7=utf8_encode("3: Paciencia, la prueba puede llegar a demorarse aproximadamente 50 minutos cuyo objetivo es ofuscar la relaciÃ³n entre las primeras preguntas y las Ãºltimas");
                     
-                    $personalidad8=utf8_encode("Existen 2 tipos de prueba en latinoamérica que determinan este tipo de personalidades que busca el Ministerio de Educación. Estas pruebas han sido compiladas y puestas a su disposición por nuestro equipo para brindarles acertividad al momento de sus pruebas, y la confianza de que estas preparado para las mismas.  ");
+                    $personalidad8=utf8_encode("Existen 2 tipos de prueba en latinoamÃ©rica que determinan este tipo de personalidades que busca el Ministerio de EducaciÃ³n. Estas pruebas han sido compiladas y puestas a su disposiciÃ³n por nuestro equipo para brindarles acertividad al momento de sus pruebas, y la confianza de que estas preparado para las mismas.  ");
                     
-                    $personalidad9=utf8_encode("El siguiente es un link de la plataforma donde se desplegará un demo de las pruebas de personalidad completamente gratis ");
+                    $personalidad9=utf8_encode("El siguiente es un link de la plataforma donde se desplegarÃ¡ un demo de las pruebas de personalidad completamente gratis ");
                     
-                    $personalidad10=utf8_encode("Si deseas ingresar a la prueba completa donde se desplegarán las aproximadamente 500 preguntas del cuestionario de evaluación de personalidad");
-                    $personalidad11=utf8_encode("Mientras más te prepares, más oportunidades tendrás de acceder a un puesto de trabajo dentro del Magisterio, no arriesgues tu futuro. CAPACITATE!!!!");
+                    $personalidad10=utf8_encode("Si deseas ingresar a la prueba completa donde se desplegarÃ¡n las aproximadamente 500 preguntas del cuestionario de evaluaciÃ³n de personalidad");
+                    $personalidad11=utf8_encode("Mientras mÃ¡s te prepares, mÃ¡s oportunidades tendrÃ¡s de acceder a un puesto de trabajo dentro del Magisterio, no arriesgues tu futuro. CAPACITATE!!!!");
                     
                     
                     ?>
@@ -133,12 +133,13 @@
             <h2 class="yellow_bg">Vinculos importantes</h2>
             <div class="middlebar_content_inner wow fadeInUp">
               <ul class="middlebar_nav">
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/tips"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/tips">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/tips') }}"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" href="{{ URL::asset('/tips') }}">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/resultado') }}"><img src="images/resultados.jpg" alt=""></a> <a class="mbar_title"   href="{{ URL::asset('/resultado') }}">Ver Resultados del simulador</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="images/cronograma.png" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
                 <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="images/Lista.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="images/archivo.png" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica tu idoneidad QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="http://www.yosiquierosermaestro.com/teacher"><img src="images/visto.png" alt=""></a> <a class="mbar_title" target="_blank" href="http://www.yosiquierosermaestro.com/teacher">Verifica si eres elegible QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="www.educacion.gob.ec">Ministerio de Educacion</a> </li>
+                <li> <a class="mbar_thubnail" href="{{ URL::asset('/idoneo') }}"><img src="images/archivo.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/idoneo') }}">Verifica tu idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/elegible') }}"><img src="images/visto.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/elegible') }}">Verifica si eres elegible QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="https://www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://www.educacion.gob.ec">Ministerio de Educacion</a> </li>
                 
                 
               </ul>
@@ -162,19 +163,41 @@
               <h2>Relacionados</h2>
               <ul class="featured_nav">
                   
-                  <li> <a class="featured_img" target="_blank"  href="http://www.yosiquierosermaestro.com/order"><img src="images/5usd.png" alt=""></a>
+                  <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="images/test.jpg" alt=""></a>
+                    <?php
+                    $localx=  utf8_encode("PrepÃ¡rate para las pruebas");
+                    ?>
+                  <div class="featured_title"> <a class="" href="{{ URL::asset('/tips') }}">{!!$localx!!}</a> </div>
+                </li>
+                
+                
+               
+                
+                  <li> <a class="featured_img"  href="{{ URL::asset('/order') }}"><img src="images/5usd.png" alt=""></a>
                     <?php
                     $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo");
                     ?>
-                  <div class="featured_title"> <a class="" target="_blank" href="http://www.yosiquierosermaestro.com/order">{!!$local!!}</a> </div>
+                  <div class="featured_title"> <a class=""  href="{{ URL::asset('/order') }}">{!!$local!!}</a> </div>
                 </li>
                
-               
                 
                 
-                    <li> <a class="featured_img" href="#"><img src="images/demo.png" alt=""></a>
+                    <li> <a class="featured_img" href="{{ URL::asset('/order') }}"><img src="images/demo.png" alt=""></a>
                     <?php
                     $local2=  utf8_encode("Ingresa al demo del simulador de pruebas de personalidad");
+                    ?>
+                  <div class="featured_title"> <a class="" href="{{ URL::asset('/order') }}">{!!$local2!!}</a> </div>
+                </li>
+                <li> <a class="featured_img" href="#"><img src="images/QSMgalapagos.jpg" alt=""></a>
+                    <?php
+                    $local=  utf8_encode("Encuentra el cronograma de mÃ©ritos y oposiciÃ³n");
+                    ?>
+                  <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/09/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-Galapagos-2017-1.pdf">{!!$local!!}</a> </div>
+                </li>
+                
+                    <li> <a class="featured_img" href="#"><img src="images/bilingue.png" alt=""></a>
+                    <?php
+                    $local2=  utf8_encode("Encuentra todo lo que necesitas saber");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec">{!!$local2!!}</a> </div>
                 </li>

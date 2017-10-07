@@ -9,7 +9,7 @@
 
 @section('info')
               <div class="single_stuff wow fadeInDown">
-              <div class="single_stuff_img"> <a href="#"><img src="{{ URL::asset('images/capacitate.jpg') }}" alt=""></a> </div>
+              <div class="single_stuff_img"> <a href="#"><img src="{{ URL::asset('images/elegible.jpg') }}" alt=""></a> </div>
               <div class="single_stuff_article">
                 <div class="single_sarticle_inner"> <a class="stuff_category" href="#">Buscar elegible</a>
                   <div class="stuff_article_inner"> <span class="stuff_date">Sep <strong>1</strong></span>
@@ -34,7 +34,7 @@
                 <th>Nombre</th>
                 <th>Especialidad</th>
                 <th>Criterio</th>
-                <th>Por conocimiento</th>
+                <!--<th>Por conocimiento</th>-->
               </tr>
             </thead>
 			<tfoot>
@@ -49,7 +49,17 @@
           </table>	
                   	</p>
                   </div>
+                   <br> 
+                      <?php
+                   
+                    $personalidad4=utf8_encode("Para verificar los archivos oficiales del Ministerio de Educación de donde se obtiene esta información has click  ");
+                    ?>
+<p>{!!$personalidad4!!} <a target="_blank" href="https://educacion.gob.ec/quiero-ser-maestro-6/">aqui...</a></p>
+<p>Si tienes alguna duda al respecto de tu elegibilidad comunicate a quierosermaestro@educacion.gob.ec </p>
+ 
                 </div>
+                  
+                  
               </div>
             </div>
 <br><br>	

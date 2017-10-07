@@ -26,10 +26,10 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="index.html"><span>Quiero</span> <span style="color:#1b82cd">Ser</span> <span style="color:#d9534f">Maestro</span> 6</a> </div>
+          <a class="navbar-brand" href="{{ URL::asset('/') }}"><span>Quiero</span> <span style="color:#1b82cd">Ser</span> <span style="color:#d9534f">Maestro</span> 6</a> </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav custom_nav">
-            <li class=""><a href="index.html">Noticias</a></li>
+            <li class=""><a href="{{ URL::asset('/') }}">Noticias</a></li>
             <li class=""> <a href="{{ URL::asset('/idoneo') }}">Consulta Idoneidad</a>
             </li>
             <li class=""> <a href="{{ URL::asset('/elegible') }}">Consulta Elegibilidad</a>
@@ -102,12 +102,13 @@
             <h2 class="yellow_bg">Vinculos importantes</h2>
             <div class="middlebar_content_inner wow fadeInUp">
               <ul class="middlebar_nav">
-                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/tips') }}"><img src="images/Tips.jpg" alt=""></a> <a class="mbar_title" href="{{ URL::asset('/tips') }}">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="images/cronograma.png" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="images/Lista.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
-                <li> <a class="mbar_thubnail" href="{{ URL::asset('/idoneo') }}"><img src="images/archivo.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/idoneo') }}">Verifica tu idoneidad QSM6</a> </li>
-                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/elegible') }}"><img src="images/visto.png" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/elegible') }}">Verifica si eres elegible QSM6</a> </li>
-                <li> <a class="mbar_thubnail" target="_blank" href="https://www.educacion.gob.ec"><img src="images/indice.png" alt=""></a> <a class="mbar_title"  target="_blank" href="https://www.educacion.gob.ec">Ministerio de Educacion</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/tips') }}"><img src="{{ URL::asset('images/Tips.jpg') }}" alt=""></a> <a class="mbar_title" href="{{ URL::asset('/tips') }}">Tips para aprobar las pruebas de idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/resultado') }}"><img src="{{ URL::asset('images/resultados.jpg') }}" alt=""></a> <a class="mbar_title"   href="{{ URL::asset('/resultado') }}">Ver Resultados del simulador</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank"  href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf"><img src="{{ URL::asset('/images/cronograma.png') }}" alt=""></a> <a class="mbar_title" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/08/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-6.pdf">Cronograma QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf"><img src="{{ URL::asset('images/Lista.png') }}" alt=""></a> <a class="mbar_title"  target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/07/MINEDUC-MINEDUC-2017-00065-A-2.pdf">Acuerdo Ministerial QSM6</a> </li>
+                <li> <a class="mbar_thubnail" href="{{ URL::asset('/idoneo') }}"><img src="{{ URL::asset('images/archivo.png') }}" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/idoneo') }}">Verifica tu idoneidad QSM6</a> </li>
+                <li> <a class="mbar_thubnail"  href="{{ URL::asset('/elegible') }}"><img src="{{ URL::asset('images/visto.png') }}" alt=""></a> <a class="mbar_title"  href="{{ URL::asset('/elegible') }}">Verifica si eres elegible QSM6</a> </li>
+                <li> <a class="mbar_thubnail" target="_blank" href="https://www.educacion.gob.ec"><img src="{{ URL::asset('images/indice.png') }}" alt=""></a> <a class="mbar_title"  target="_blank" href="https://www.educacion.gob.ec">Ministerio de Educacion</a> </li>
                 
                 
                 
