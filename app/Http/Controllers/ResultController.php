@@ -506,7 +506,7 @@ class ResultController extends Controller
 		$this->resultado[6]['TF'] = (count($pdf) == 0)?0:((is_null($pdf[0]->PDF))?0:$pdf[0]->PDF);
 		
 		if ($genero == 1) {
-		$mff = DB::connection('mecapacitoecuador')->select('SELECT COUNT( result.responsesummary ) as MFF
+			$mff = DB::connection('mecapacitoecuador')->select('SELECT COUNT( result.responsesummary ) as MFF
 			from mood_user us
 			join mood_quiz_attempts us_ev on us.id = us_ev.userid
 			join mood_quiz ev on ev.id = us_ev.quiz
@@ -515,13 +515,13 @@ class ResultController extends Controller
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
 			where us_ev.attempt = 1 and us.id = ? and
-		result.responsesummary = ? and
-		hom.Id_pregunta_excel in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,238,242,244,246,261,264,279)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
-		//MfF H suma los resultados falsos columna G in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,238,242,244,246,261,264,279)
+			result.responsesummary = ? and
+			hom.Id_pregunta_excel in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,238,242,244,246,261,264,279)
+			GROUP BY result.responsesummary',[$user,'FALSO']);
+			//MfF H suma los resultados falsos columna G in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,238,242,244,246,261,264,279)
 		} else {
 		//mujer
-		DB::connection('mecapacitoecuador')->select('SELECT COUNT( result.responsesummary ) as MFF
+			$mff = DB::connection('mecapacitoecuador')->select('SELECT COUNT( result.responsesummary ) as MFF
 			from mood_user us
 			join mood_quiz_attempts us_ev on us.id = us_ev.userid
 			join mood_quiz ev on ev.id = us_ev.quiz
@@ -530,10 +530,10 @@ class ResultController extends Controller
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
 			where us_ev.attempt = 1 and us.id = ? and
-		result.responsesummary = ? and
-		hom.Id_pregunta_excel in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,216,238,242,244,246,261,264,275,279)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
-		//MfF M suma los resultados falsos columna G in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,216,238,242,244,246,261,264,275,279)
+			result.responsesummary = ? and
+			hom.Id_pregunta_excel in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,216,238,242,244,246,261,264,275,279)
+			GROUP BY result.responsesummary',[$user,'FALSO']);
+			//MfF M suma los resultados falsos columna G in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,216,238,242,244,246,261,264,275,279)
 		}
 		$this->resultado[7]['TF'] = (count($mff) == 0)?0:((is_null($mff[0]->MFF))?0:$mff[0]->MFF);
 		
