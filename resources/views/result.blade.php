@@ -50,6 +50,55 @@
 	          			</div>
   					</div>
 					</p>	
+					<p>
+					<div class="panel panel-default">
+    					<div class="panel-heading">Descripci&oacute;n de la nomenclatura</div>
+    					<div class="panel-body" id="content-body">
+    						<table class="table table-bordered  table-hover">
+    							<tr>
+    								<td>Hs</td>
+    								<td>Hipocondr&iacute;a</td>
+    							</tr>
+    							<tr>
+    								<td>D</td>
+    								<td>Depresi&oacute;n</td>
+    							</tr>
+    							<tr>
+    								<td>Hy</td>
+    								<td>Histeria</td>
+    							</tr>
+    							<tr>
+    								<td>Pd</td>
+    								<td>Psicopat&iacute;a</td>
+    							</tr>
+    							<tr>
+    								<td>Mf</td>
+    								<td>Masculinidad/Feminidad</td>
+    							</tr>
+    							<tr>
+    								<td>Pa</td>
+    								<td>Paranoia</td>
+    							</tr>
+    							<tr>
+    								<td>Pt</td>
+    								<td>Psicastenia</td>
+    							</tr>
+    							<tr>
+    								<td>Sc</td>
+    								<td>Esquizofrenia</td>
+    							</tr>
+    							<tr>
+    								<td>Ma</td>
+    								<td>Hipoman&iacute;a</td>
+    							</tr>
+    							<tr>
+    								<td>Si</td>
+    								<td>Introversi&oacute;n Social </td>
+    							</tr>
+    						</table>
+	          			</div>
+  					</div>
+					</p>	
                   </div>
                 </div>
               </div>

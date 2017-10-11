@@ -137,7 +137,7 @@ class TeacherController extends Controller
     			$cadena .=  "</tr>";
     			$cadena .= "<tr id='" . $value->id . "'>";
     			$cadena .=  "<td>Su estado es : </td>";
-    			$tmp = ($value->personalidad == $value->razonamiento)?'IDONEO':'NO ES IDONEO';
+    			$tmp = (($value->personalidad == $value->razonamiento) && ($value->personalidad == 'ADECUADO'))?'IDONEO':'NO ES IDONEO';
     			$cadena .=  "<td><span style='color:#d9534f'>" . $tmp. "</span></td>";
     			$cadena .=  "</tr>";
     			
@@ -171,7 +171,7 @@ class TeacherController extends Controller
     			$cadena .= "<tr id='" . $value->id . "'>";
     			$cadena .=  "<td>" . $value->ci . "</td>";
     			$cadena .=  "<td>" . $value->name . "</td>";
-    			if($value->opinion!="NO ELEGIBLE")
+    			if($value->opinion != "NO ELEGIBLE")
                         $cadena .=  "<td>" . $value->specialty . "</td>";
                         //opinion=dictamen
                         //know=saberes
@@ -201,7 +201,7 @@ class TeacherController extends Controller
     	->select('teachers.ci','teachers.name','personalities.opinion as personalidad','reasonings.opinion as razonamiento')
     	->get();
     	if(count($idoneos) > 0){
-    		$selection = ($idoneos[0]->personalidad == $idoneos[0]->razonamiento)?'IDONEO':'NO ES IDONEO';
+    		$selection = (($idoneos[0]->personalidad == $idoneos[0]->razonamiento) && ($idoneos[0]->personalidad == 'ADECUADO'))?'IDONEO':'NO ES IDONEO';
     	} else {
     		$selection = '';
     	}
