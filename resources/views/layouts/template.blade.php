@@ -134,7 +134,7 @@
               <ul class="featured_nav">
                   
                   
-                      <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="images/test.jpg" alt=""></a>
+                      <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="{{ URL::asset('images/test.jpg') }}" alt=""></a>
                     <?php
                     $localx=  utf8_encode("Prepárate para las pruebas");
                     ?>
@@ -145,7 +145,7 @@
                 
                
                 
-                  <li> <a class="featured_img"  href="{{ URL::asset('/order') }}"><img src="images/5usd.png" alt=""></a>
+                  <li> <a class="featured_img"  href="{{ URL::asset('/order') }}"><img src="{{ URL::asset('images/5usd.png') }}" alt=""></a>
                     <?php
                     $local=  utf8_encode("Capacitate con el simulador de pruebas de personalidad completo");
                     ?>
