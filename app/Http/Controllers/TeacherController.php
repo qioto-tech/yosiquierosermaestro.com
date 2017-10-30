@@ -162,7 +162,7 @@ class TeacherController extends Controller
     	
     	$cadena = '';
     	$elegibles = Teacher::join('knowledges','teachers.ci','=','knowledges.ci')
-	    	->where('teachers.ci',$request->ci)
+	    	->where('teachers.ci',$request->ci_1)
 	    	->select('teachers.ci','teachers.name','knowledges.opinion','knowledges.specialty','knowledges.know')
 	    	->get();
     	

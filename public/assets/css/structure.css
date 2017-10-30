@@ -27,7 +27,7 @@ h2{font-family:'Varela',sans-serif}
 #header{float:left; display:inline; width:100%; background-color:#3b3b3b}
 .navbar{margin-bottom:0; width:80%; float:left}
 .navbar-default{background-color:#3b3b3b; border-color:#3b3b3b}
-.navbar-brand{font-family:'Eddie'; font-size:23px; -webkit-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
+.navbar-brand{font-family:'Arial'; font-size:23px; -webkit-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
 .navbar-brand > span{color:#ffd62c}
 .navbar-brand:hover{opacity:0.75}
 .custom_nav li{border-right:1px solid #161616}

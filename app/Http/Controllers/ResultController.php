@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Order;
+use App\Parameter;
 
 class ResultController extends Controller
 {
@@ -117,6 +118,33 @@ class ResultController extends Controller
 		//
 	}
 	
+	public function parameters_result($param, $note){
+		$description = '';
+		
+		$parameters = Parameter::where('code',$param)
+						->get();
+		foreach ($parameters as $parameter){
+			$val = explode(',', $parameter->rank);
+			if ( is_numeric($val[0]) && is_numeric($val[1])){
+				if( ($val[0] < $note) && ($val[1] > $note) ){
+					$description = $parameter->description;
+				}
+			} elseif ( is_numeric($val[0]) ){
+				if( ($val[0] <= $note) ){
+					$description = $parameter->description;
+				}
+			} else {
+					if( ($val[1] >= $note) ){
+						$description = $parameter->description;
+					}
+			}
+
+		}
+		
+		$results[] = [ 'value' => $description];
+		return response()->json($results);
+	}
+	
 	public function validate_result(Request $request)
 	{
 		$cadena = '';
@@ -151,6 +179,7 @@ class ResultController extends Controller
 		$cadena .= '<th>Total F</th>';
 		$cadena .= '		<th>Total B</th>';
 		$cadena .= '<th>Total</th>';
+		$cadena .= '<th>Parametro</th>';
 		$cadena .= '		</tr>';
 		$cadena .= '</thead>';
 		$cadena .= '		<tbody>';
@@ -163,6 +192,7 @@ class ResultController extends Controller
 				$cadena .= '	<td>' . $this->resultado[$i]['TF'] . '</td>';
 				$cadena .= '	<td>' . $this->resultado[$i]['TB'] . '</td>';
 				$cadena .= '	<td>' . $this->resultado[$i]['T'] . '</td>';
+				$cadena .= '	<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="view_parameters(\''.$this->resultado[$i]['N'].'\','.$this->resultado[$i]['T'].');">Ver</button></td>';
 				$cadena .= '</tr>';
 			}
 		} else {

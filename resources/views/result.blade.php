@@ -4,6 +4,23 @@
 
 @section('script')
 
+<script>
+
+function view_parameters(param,note){
+	var url = "{{ url('parameters/result/') }}"+ "/" + param + "/" + note;
+	$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data){
+			$.each(data, function(i, item) {
+					$(".modal-body").html(item.value);							
+			});	
+		}
+	});
+	return false;
+}
+</script>
+
 @endsection
 
 
@@ -49,7 +66,27 @@
     					<div class="panel-body" id="content-body">
 	          			</div>
   					</div>
-					</p>	
+					</p>
+					<div id="myModal" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+					
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Interpretaci&oacute;n del parametro</h4>
+					      </div>
+					      <div class="modal-body">
+					        <p>Some text in the modal.</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					      </div>
+					    </div>
+					
+					  </div>
+					</div>
+						
 					<p>
 					<div class="panel panel-default">
     					<div class="panel-heading">Descripci&oacute;n de la nomenclatura</div>
@@ -104,16 +141,13 @@
               </div>
             </div>
 <br><br>
-
 @endsection
 
 @section('content')
 
-	<script>
 
 
-
-
+<script>
 
 </script>
 @endsection

@@ -20,7 +20,7 @@
 						{!! Form::open([null, null, 'class'=>'form-inline', 'role'=>'form','name'=>'frmsearch','id'=>'frmsearch']) !!}
 						  <div class="form-group ui-widget">
 						    <label class="sr-only" for="name">Numero de cedula</label>
-						    {!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'60', 'id'=>'ci', 'name'=>'ci']) !!}       
+						    {!!	Form::text('ci',null,['class'=>'form-control', 'placeholder'=>'Introduce el numero de cedula','size'=>'60', 'id'=>'ci_1', 'name'=>'ci_1']) !!}       
 						  </div>
 						  <button type="button" class="btn btn-default" id="btn-search-elegible">Buscar elegible</button>
 						

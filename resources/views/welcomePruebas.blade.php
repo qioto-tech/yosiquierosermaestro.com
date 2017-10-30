@@ -61,21 +61,21 @@
                   <div class="stuff_article_inner"> <span class="stuff_date">Sep <strong>1</strong></span>
                     <h2><a href="#">Capacitacion para pruebas de personalidad</a></h2>
                       <?php
-                    $personalidad=utf8_encode("El objetivo principal de las pruebas de personalidad es determinar las el desenvolvimiento psicológico del aspirante en un entorno estudiantil de niños y jóvenes. El Ministerio de Educación ha realizado esfuerzos para poder segregar personalidades adictivas o violentas que puedan ser perjudiciales para la educación.");
-                    $personalidax=utf8_encode("Las pruebas de personalidad no tienen respuestas correctas o incorrectas ya que estas preguntas son interlazadas unas con otras y son diseñadas para reconocer que el aspirante esta mintiendo en la lógica de su respuesta. Es por eso que el principal secreto en estas pruebas de personalidad es la coherencia de contestación y tiempos de respuesta");
+                    $personalidad=utf8_encode("El objetivo principal de las pruebas de personalidad es determinar las el desenvolvimiento psicol&oacute;gico del aspirante en un entorno estudiantil de ni&ntilde;os y j&oacute;venes. El Ministerio de Educaci&oacute;n ha realizado esfuerzos para poder segregar personalidades adictivas o violentas que puedan ser perjudiciales para la educaci&oacute;n.");
+                    $personalidax=utf8_encode("Las pruebas de personalidad no tienen respuestas correctas o incorrectas ya que estas preguntas son interlazadas unas con otras y son dise&ntilde;adas para reconocer que el aspirante esta mintiendo en la l&oacute;gica de su respuesta. Es por eso que el principal secreto en estas pruebas de personalidad es la coherencia de contestaci&oacute;n y tiempos de respuesta");
                     
-                    $personalidad3=utf8_encode("Ejemplo: En la pregunta 20 te preguntan algo como: Te gusta ir a fiestas y beber socialmente?.... En la pregunta 52 que esta enlazada te preguntan lo mismo pero de forma diferente Ejemplo te gusta tomar solo o acompañado?. Si te das cuenta estas preguntas tienen relación y se deben responder coherentemente.");
+                    $personalidad3=utf8_encode("Ejemplo: En la pregunta 20 te preguntan algo como: Te gusta ir a fiestas y beber socialmente?.... En la pregunta 52 que esta enlazada te preguntan lo mismo pero de forma diferente Ejemplo te gusta tomar solo o acompa&ntilde;ado?. Si te das cuenta estas preguntas tienen relaci&oacute;n y se deben responder coherentemente.");
                     
                     $personalidad4=utf8_encode("1: Responder con la verdad y coherentemente todas las preguntas");
                     $personalidad5=utf8_encode("2: No contradecirnos");
-                    $personalidad7=utf8_encode("3: Paciencia, la prueba puede llegar a demorarse aproximadamente 50 minutos cuyo objetivo es ofuscar la relación entre las primeras preguntas y las últimas");
+                    $personalidad7=utf8_encode("3: Paciencia, la prueba puede llegar a demorarse aproximadamente 50 minutos cuyo objetivo es ofuscar la relaci&oacute;n entre las primeras preguntas y las &uacute;ltimas");
                     
-                    $personalidad8=utf8_encode("Existen 2 tipos de prueba en latinoamérica que determinan este tipo de personalidades que busca el Ministerio de Educación. Estas pruebas han sido compiladas y puestas a su disposición por nuestro equipo para brindarles acertividad al momento de sus pruebas, y la confianza de que estas preparado para las mismas.  ");
+                    $personalidad8=utf8_encode("Existen 2 tipos de prueba en latinoam&eacute;rica que determinan este tipo de personalidades que busca el Ministerio de Educaci&oacute;n. Estas pruebas han sido compiladas y puestas a su disposici&oacute;n por nuestro equipo para brindarles acertividad al momento de sus pruebas, y la confianza de que estas preparado para las mismas.  ");
                     
-                    $personalidad9=utf8_encode("El siguiente es un link de la plataforma donde se desplegará un demo de las pruebas de personalidad completamente gratis ");
+                    $personalidad9=utf8_encode("El siguiente es un link de la plataforma donde se desplegar&aacute; un demo de las pruebas de personalidad completamente gratis ");
                     
-                    $personalidad10=utf8_encode("Si deseas ingresar a la prueba completa donde se desplegarán las aproximadamente 500 preguntas del cuestionario de evaluación de personalidad");
-                    $personalidad11=utf8_encode("Mientras más te prepares, más oportunidades tendrás de acceder a un puesto de trabajo dentro del Magisterio, no arriesgues tu futuro. CAPACITATE!!!!");
+                    $personalidad10=utf8_encode("Si deseas ingresar a la prueba completa donde se desplegar&aacute;n las aproximadamente 500 preguntas del cuestionario de evaluaci&oacute;n de personalidad");
+                    $personalidad11=utf8_encode("Mientras m&aacute;s te prepares, m&aacute;s oportunidades tendr&aacute;s de acceder a un puesto de trabajo dentro del Magisterio, no arriesgues tu futuro. CAPACITATE!!!!");
                     
                     
                     ?>
@@ -89,13 +89,7 @@
                    <p>{!!$personalidad7!!}</p>
                    <p>{!!$personalidad8!!}</p>
                    
-                    <p>
-                    <a target="_blank" href="http://www.mecapacitoecuador.com/"><h2>Click aqui para ingresar al Demo</h2></a>
-                   Usuario:admin
-                    Password: admin
-                    
-                    </p>
-                    
+
                     <p>{!!$personalidad10!!}</p>
                     <p>
                     
@@ -165,7 +159,7 @@
                   
                   <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="images/test.jpg" alt=""></a>
                     <?php
-                    $localx=  utf8_encode("Prepárate para las pruebas");
+                    $localx=  utf8_encode("Prep&aacute;rate para las pruebas");
                     ?>
                   <div class="featured_title"> <a class="" href="{{ URL::asset('/tips') }}">{!!$localx!!}</a> </div>
                 </li>
@@ -190,7 +184,7 @@
                 </li>
                 <li> <a class="featured_img" href="#"><img src="images/QSMgalapagos.jpg" alt=""></a>
                     <?php
-                    $local=  utf8_encode("Encuentra el cronograma de méritos y oposición");
+                    $local=  utf8_encode("Encuentra el cronograma de m&eacute;ritos y oposici&oacute;n");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/09/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-Galapagos-2017-1.pdf">{!!$local!!}</a> </div>
                 </li>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Product;
 use App\Person;
+use App\Constant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\Envio_Mensaje;
@@ -12,7 +13,31 @@ use Redirect;
 
 class OrderController extends Controller
 {
-    /**
+	private $commerce_id;
+	private $response_url;
+	private $payment_service_other;
+	private $payment_service;
+	
+	function __construct() {
+		$constants= DB::table('constants')
+		->where('code','commerce_id')
+		->select('value')
+		->get();
+		$this->commerce_id = $constants[0]->value;
+		
+		$constants= DB::table('constants')
+		->where('code','response_url')
+		->select('value')
+		->get();
+		$this->response_url= $constants[0]->value;
+		
+		$constants= DB::table('constants')
+		->where('code','pay_url')
+		->select('value')
+		->get();
+		$this->payment_service_other= $constants[0]->value;
+	}
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -44,62 +69,28 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * pay_type 1 = taarjeta de credito 2 transferencia bancaria
      */
     public function store(Request $request)
     {
-    	$product = DB::table('products')
-    	->where('id',$request->product)
-    	->get();
     	
-    	
-    	$person = DB::table('persons')
-    		->where('customer_ci',$request->customer_ci)
-    		->get();
-    	
-    	
-    	if ( count($person) == 0 )
-    	{
-    		$person = new Person();
-	    	$validator = $this->validate($request, [
-	    			'customer_ci'=>['required','max:255'],
-	    			'customer_name'=>['required','max:255'],
-	    			'customer_lastname'=>['required','max:255'],
-	    			'customer_phone'=>['required'],
-	    			'customer_address'=>['required'],
-	    			'customer_email'=>['required'],
-	    			'product'=>['required'],
-	    	]);
-	    	
-	    	$person->fill($request->all());
-	    	$person->save();
-	    	$customer_id = $person->id;
+    	if ( $request->pay_type == 1 ){
+    		$order= $this->payment_credit_card( $request );
+    		$url = $this->pagosmedios($order);
+    		$array = json_decode($url);
+    		return Redirect::to('https://pagosqioto.local/api/payment/'.$order->id);//
     	} else {
-    		$customer_id = $person[0]->id;
+    		$order = $this->payment_transfer( $request );
+    		
+    		return view('payment_transfer',[ 'datos'=> $order ]);//
+    		
     	}
     	
+
+    	//    	$url = $this->pagosmedios($order->id);
+//    	$array = json_decode($url);
     	
-    	
-    	$order = new Order();
-    	
-    	$order->commerce_id = '8226';
-    	$order->customer_id = $customer_id;
-    	$order->product_description = $product[0]->description;
-    	$order->product_amount = $product[0]->amount;
-    	$order->product_id = $product[0]->id;
-    	$order->response_url = 'https://www.pagosqioto.com/register/';
-    	//$order->response_url = 'https://pagosqioto.local/register/';
-    	$order->state = 'Pendiente';
-    	
-    	$order->save();
-    	
-    	DB::table('orders')
-    	->where('id',$order->id)
-    	->update(['code' => 'QSM'.$order->id]);
-    	
-    	$url = $this->pagosmedios($order->id);
-    	$array = json_decode($url);
-    	
-    	return Redirect::to($array->data->payment_url);//
+    	//return Redirect::to($array->data->payment_url);//
     }
 
     /**
@@ -220,4 +211,140 @@ class OrderController extends Controller
     	
     	return view('disapproved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
     }
+    
+    private function payment_credit_card( $request ){
+//     	$product = DB::table('products')
+//     	->where('id',$request->product)
+//     	->get();
+    	
+    	$product = $this->search_product( $request->product );
+    	$person = $this->search_person( $request->customer_ci);
+    	$order = $this->new_order($person, $product, 1);
+    	
+//     	$person = DB::table('persons')
+//     	->where('customer_ci',$request->customer_ci)
+//     	->get();
+    	
+    	
+//     	if ( count($person) == 0 )
+//     	{
+//     		$person = new Person();
+//     		$validator = $this->validate($request, [
+//     				'customer_ci'=>['required','max:255'],
+//     				'customer_name'=>['required','max:255'],
+//     				'customer_lastname'=>['required','max:255'],
+//     				'customer_phone'=>['required'],
+//     				'customer_address'=>['required'],
+//     				'customer_email'=>['required'],
+//     				'product'=>['required'],
+//     		]);
+    		
+//     		$person->fill($request->all());
+//     		$person->save();
+//     		$customer_id = $person->id;
+//     	} else {
+//     		$customer_id = $person[0]->id;
+//     	}
+    	
+    	
+    	
+//     	$order = new Order();
+    	
+//     	$order->commerce_id = '8226';
+//     	$order->customer_id = $customer_id;
+//     	$order->product_description = $product[0]->description;
+//     	$order->product_amount = $product[0]->amount;
+//     	$order->product_id = $product[0]->id;
+//     	//$order->response_url = 'https://www.pagosqioto.com/register/';
+//     	$order->response_url = 'https://pagosqioto.local/register/';
+//     	$order->state = 'Pendiente';
+    	
+//     	$order->save();
+    	
+//     	DB::table('orders')
+//     	->where('id',$order->id)
+//     	->update(['code' => 'QSM'.$order->id]);
+		return $order;
+    }
+    
+    private function payment_transfer( $request ){
+    	
+    	$product = $this->search_product( $request->product );
+    	$person = $this->search_person( $request->customer_ci);
+    	$order = $this->new_order($person, $product, 2);
+    	
+    	return $order;
+    }
+    
+    private function search_product( $product_id ){
+    	$product = DB::table('products')
+    	->where('id',$product_id)
+    	->get();
+    	
+    	return $product;
+    }
+
+    private function search_person( $person_ci ){
+    	$person = DB::table('persons')
+    	->where('customer_ci',$person_ci)
+    	->get();
+    	
+    	
+    	if ( count($person) == 0 )
+    	{
+    		$person = new Person();
+    		$validator = $this->validate($request, [
+    				'customer_ci'=>['required','max:255'],
+    				'customer_name'=>['required','max:255'],
+    				'customer_lastname'=>['required','max:255'],
+    				'customer_phone'=>['required'],
+    				'customer_address'=>['required'],
+    				'customer_email'=>['required'],
+    				'product'=>['required'],
+    		]);
+    		
+    		$person->fill($request->all());
+    		$person->save();
+    		$customer_id = $person->id;
+    	} else {
+    		$customer_id = $person[0]->id;
+    	}
+    	
+    	return $customer_id;
+    }
+    
+    private function new_order($person, $product, $pay_type){
+    	$order = new Order();
+    	
+    	$order->commerce_id = $this->commerce_id;
+    	$order->customer_id = $person;
+    	$order->product_description = $product[0]->description;
+    	$order->product_amount = $product[0]->amount;
+    	$order->product_id = $product[0]->id;
+    	//$order->response_url = 'https://www.pagosqioto.com/register/';
+    	$order->response_url = $this->response_url;
+    	$order->state = 'DEPOSITO';
+    	
+    	$order->save();
+    	
+    	DB::table('orders')
+    	->where('id',$order->id)
+    	->update(['code' => 'QSM'.$order->id, 'pay_type'=> $pay_type]);
+    	
+    	return $order->id;
+    }
+    
+    public function pending(){
+    	$orders = DB::table('orders')
+    	->where('pay_type',2)
+    	->where('state','Pendiente')
+    	->get();
+    	
+    	return view('pending',[ 'datos'=> $orders]);//
+    }
+    
+    public function deposit($order){
+    	return view('deposit',[ 'datos'=> $order]);
+    }
+    
 }

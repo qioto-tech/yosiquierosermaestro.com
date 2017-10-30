@@ -14,6 +14,7 @@
 <script src="{{ URL::asset('assets/js/html5shiv.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/respond.min.js') }}"></script>
 <![endif]-->
+@yield('script')
 </head>
 <body>
 <div id="preloader">
@@ -222,6 +223,68 @@
 		$('#result-elegible').hide(); 
 		$('#resultado-test').hide(); 
 	
+		$("#ci").keypress(function(e) {
+		       if(e.which == 13) {
+		          // Acciones a realizar, por ej: enviar formulario.
+		  			if( $("#ci").val() === '' ){
+						alert('Se requiere un numero de cedula');
+					} else {
+						$('#result-elegible').show();
+						var url = "{{ url('/teacher-search-suitable/search') }}";
+						$.ajax({
+							type: "POST",
+							url: url,
+							data: $('#frmsearch').serialize(),
+							success: function(data){
+								$.each(data, function(i, item) {
+									if(item.flag != 'No existe su cedula'){
+										$('table tr').slice(1).remove();
+										$("#grid-elegible tbody").append(item.value);
+
+									} else {
+										$('table tr').slice(1).remove();
+										$("#grid-elegible tbody").append(item.value);
+									}							
+								});	
+							}
+						});
+					}
+					return false;
+				          
+		       }
+		});
+
+		$("#ci_1").keypress(function(e) {
+		       if(e.which == 13) {
+		          // Acciones a realizar, por ej: enviar formulario.
+					if( $("#ci_1").val() === '' ){
+						alert('Se requiere un numero de cedula');
+					} else {
+						$('#result-elegible').show();
+						var url = "{{ url('/teacher-search-elegible/search') }}";
+						$.ajax({
+							type: "POST",
+							url: url,
+							data: $('#frmsearch').serialize(),
+							success: function(data){
+								$.each(data, function(i, item) {
+									if(item.flag != 'No existe su cedula'){
+										$('table tr').slice(1).remove();
+										$("#grid-elegible tbody").append(item.value);
+
+									} else {
+										$('table tr').slice(1).remove();
+										$("#grid-elegible tbody").append(item.value);
+									}							
+								});	
+							}
+						});
+					}
+					return false;
+
+		       }
+		});
+
 		
 		$("#btn-search-suitable").on("click", function() {
 			if( $("#ci").val() === '' ){
@@ -251,7 +314,7 @@
 		});
 
 		$("#btn-search-elegible").on("click", function() {
-			if( $("#ci").val() === '' ){
+			if( $("#ci_1").val() === '' ){
 				alert('Se requiere un numero de cedula');
 			} else {
 				$('#result-elegible').show();
@@ -276,6 +339,7 @@
 			}
 			return false;
 		});
+		
 		$("#btn-validate").on("click", function() {
 			if( $("#usuario").val() === '' || $("#password").val() === '' || $("#sexo").val() == 0){
 				alert('Se requiere todos los campos');
@@ -295,7 +359,8 @@
 			}
 			return false;
 		});
-		
+
+
 	});
 </script>
 

@@ -24,6 +24,9 @@ class CreateOrderTable extends Migration
     		$table->string('response_url');
     		$table->string('state',5);
     		$table->string('password_ne',10);
+    		$table->string('pay_type',2);
+    		$table->string('document_number',20);
+    		$table->string('document_path',255);
     		$table->timestamps();
     	});
     		//

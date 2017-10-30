@@ -33,6 +33,9 @@ Route::get('/', function () {
 	Route::get('/elegible', 'TeacherController@elegible');
 	Route::get('/aprobado/{order}', 'OrderController@approved');
 	Route::get('/reprobado/{order}', 'OrderController@disapproved');
+	Route::get('/pendientes', 'OrderController@pending');
+	Route::get('/deposito/{order}', 'OrderController@deposit');
 	Route::post('/search/search', 'TeacherController@search');
 	Route::post('/search-result/result', 'ResultController@validate_result');
+	Route::get('/parameters/result/{param}/{note}', 'ResultController@parameters_result');
 	
