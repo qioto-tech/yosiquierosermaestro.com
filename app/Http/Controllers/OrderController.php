@@ -12,12 +12,17 @@ use App\Jobs\Envio_Mensaje;
 use App\Jobs\Payment_Deposit;
 use Redirect;
 
+/**
+ * @author renvi
+ *
+ */
 class OrderController extends Controller
 {
 	private $commerce_id;
 	private $response_url;
 	private $payment_service_other;
 	private $payment_service;
+	private $pending_url;
 	
 	function __construct() {
 		$constants= DB::table('constants')
@@ -36,7 +41,20 @@ class OrderController extends Controller
 		->where('code','pay_url')
 		->select('value')
 		->get();
-		$this->payment_service_other= $constants[0]->value;
+		$this->payment_service_other = $constants[0]->value;
+		
+		$constants= DB::table('constants')
+		->where('code','pending_url')
+		->select('value')
+		->get();
+		$this->pending_url = $constants[0]->value;
+
+		$constants= DB::table('constants')
+		->where('code','url_service_pay')
+		->select('value')
+		->get();
+		$this->payment_service = $constants[0]->value;
+		
 	}
 	/**
      * Display a listing of the resource.
@@ -77,21 +95,16 @@ class OrderController extends Controller
     	
     	if ( $request->pay_type == 1 ){
     		$order= $this->payment_credit_card( $request );
-    		$url = $this->pagosmedios($order);
-    		$array = json_decode($url);
-    		return Redirect::to('https://pagosqioto.local/api/payment/'.$order->id);//
+    		$data = ['order' => $order,
+    			'from' => 'ysqsm',
+			];
+    		$parameters = implode(',',$data);
+    		return Redirect::to( $this->payment_service. $parameters );//
     	} else {
     		$order = $this->payment_transfer( $request );
     		$this->dispatch(new Payment_Deposit( $order ));
     		return view('payment_transfer',[ 'datos'=> $order ]);//
-    		
     	}
-    	
-
-    	//    	$url = $this->pagosmedios($order->id);
-//    	$array = json_decode($url);
-    	
-    	//return Redirect::to($array->data->payment_url);//
     }
 
     /**
@@ -153,63 +166,19 @@ class OrderController extends Controller
         return response()->json(['newHtml' => $html]);
     }
     
-    private function pagosmedios($id)
-    {
-    	$orders = DB::table('orders')
-    	->join('persons', 'orders.customer_id', '=' ,'persons.id')
-    	->where('orders.id',$id)
-    	->select('orders.code','orders.commerce_id','persons.customer_ci as pci','persons.customer_name','persons.customer_lastname','persons.customer_phone','persons.customer_address','persons.customer_email','orders.product_description','orders.product_amount','orders.product_id','orders.response_url')
-    	->get();
-    	
-    	$url = 'https://app.pagomedios.com/api/setorder/'; //URL del servicio web REST
-    	//$header = array('Content-Type: application/json',);
-    	
-    	foreach ($orders as $value){
-    		$dataOrden = array(	'commerce_id' => $value->commerce_id, //ID unico por comercio
-    				'customer_id' => $value->pci, //Identificaci�n del tarjeta habiente (RUC, C�dula, Pasaporte)
-    				'customer_name' => $value->customer_name, //Nombres del tarjeta habiente
-    				'customer_lastname' => $value->customer_lastname, //Apellidos del tarjeta habiente
-    				'customer_phones' => $value->customer_phone,  //Tel�fonos del tarjeta habiente
-    				'customer_address' => $value->customer_address,  //Direcci�n del tarjeta habiente
-    				'customer_email' => $value->customer_email,  //Correo electr�nico del tarjeta habiente
-    				'customer_language' => 'es',  //Idioma del tarjeta habiente
-    				'order_description' => $value->product_description,  //Descripci�n de la �rden
-    				'order_amount' => $value->product_amount, //Monto total de la �rden
-    				'order_id' => $value->code,
-    				'response_url' => $value->response_url,
-    		);
-    	}
-    	
-    	$params = http_build_query( $dataOrden ); //Tranformamos un array en formato GET
-    	//Consumo del servicio Rest
-    	
-    	//dd($params);
-    	
-    	$curl = curl_init();
-    	curl_setopt($curl, CURLOPT_URL, $url.'?'.$params);
-    	//dd($params);
-//     	curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-    	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-    	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    	
-    	$response = curl_exec($curl);
-    	curl_close($curl);
-    	
-    	
-    	
-    	return $response;
-    }
-    
+    /*  */
     public function approved( $order)
     {
+    	
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->where('orders.code',$order)
     	->select('orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
-    		->get();
+    	->get();
+    	
     	$usuario = 'Aspirante_'.$datos[0]->code;
     	$password = $datos[0]->password_ne;
-        
+    	
+    	
         $this->dispatch(new Envio_Mensaje($datos[0]));
     	
     	return view('approved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
@@ -228,57 +197,11 @@ class OrderController extends Controller
     }
     
     private function payment_credit_card( $request ){
-//     	$product = DB::table('products')
-//     	->where('id',$request->product)
-//     	->get();
     	
     	$product = $this->search_product( $request->product );
     	$person = $this->search_person( $request->customer_ci);
     	$order = $this->new_order($person, $product, 1);
-    	
-//     	$person = DB::table('persons')
-//     	->where('customer_ci',$request->customer_ci)
-//     	->get();
-    	
-    	
-//     	if ( count($person) == 0 )
-//     	{
-//     		$person = new Person();
-//     		$validator = $this->validate($request, [
-//     				'customer_ci'=>['required','max:255'],
-//     				'customer_name'=>['required','max:255'],
-//     				'customer_lastname'=>['required','max:255'],
-//     				'customer_phone'=>['required'],
-//     				'customer_address'=>['required'],
-//     				'customer_email'=>['required'],
-//     				'product'=>['required'],
-//     		]);
-    		
-//     		$person->fill($request->all());
-//     		$person->save();
-//     		$customer_id = $person->id;
-//     	} else {
-//     		$customer_id = $person[0]->id;
-//     	}
-    	
-    	
-    	
-//     	$order = new Order();
-    	
-//     	$order->commerce_id = '8226';
-//     	$order->customer_id = $customer_id;
-//     	$order->product_description = $product[0]->description;
-//     	$order->product_amount = $product[0]->amount;
-//     	$order->product_id = $product[0]->id;
-//     	//$order->response_url = 'https://www.pagosqioto.com/register/';
-//     	$order->response_url = 'https://pagosqioto.local/register/';
-//     	$order->state = 'Pendiente';
-    	
-//     	$order->save();
-    	
-//     	DB::table('orders')
-//     	->where('id',$order->id)
-//     	->update(['code' => 'QSM'.$order->id]);
+     	
 		return $order;
     }
     
@@ -383,7 +306,7 @@ class OrderController extends Controller
     	$this->dispatch(new Envio_Mensaje($orders_persons[0]));
     	
 //    	return Redirect::to('http://www.yosiquierosermaestro.com/pendientes');
-    	return Redirect::to('http://yosiquierosermaestro.local/pendientes');
+    	return Redirect::to( $this->pending_url );
     }
     
     private function generateRandomString($length = 5) {
@@ -411,6 +334,12 @@ class OrderController extends Controller
     		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil) value (?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante']);
     	}
     	return $user;
+    }
+    
+    private function encryptIt( $data ) {
+    	$cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    	$dataEncoded = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $data, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+    	return( $dataEncoded );
     }
     
 }
