@@ -137,6 +137,20 @@ class OrderController extends Controller
     {
         //
     }
+     /**
+     * Despliega los servicios por operador
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function RenderPartial($id_partial) {
+        //
+        print_r($id_partial);
+        die();
+        $html = (String) view($id_partial);
+        
+        return response()->json(['newHtml' => $html]);
+    }
     
     private function pagosmedios($id)
     {
