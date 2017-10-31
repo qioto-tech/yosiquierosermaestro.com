@@ -369,11 +369,18 @@ class OrderController extends Controller
     public function authorize_payment( $order ){
     	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->where('orders.id',$order)
-    	->select('orders.code','orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
     	->get();
     	
     	$user = $this->actualizarmce ($orders_persons);
-    	//$this->dispatch(new Envio_Mensaje($orders_persons[0]));
+    	
+    	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->where('orders.id',$order)
+    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->get();
+    	
+    	
+    	$this->dispatch(new Envio_Mensaje($orders_persons[0]));
     	
 //    	return Redirect::to('http://www.yosiquierosermaestro.com/pendientes');
     	return Redirect::to('http://yosiquierosermaestro.local/pendientes');
@@ -399,7 +406,7 @@ class OrderController extends Controller
     		
     		DB::table('orders')
     		->where('code',$data->code)
-    		->update(['password_ne' => $password,'state' => 'Autorizado']);
+    		->update(['password_ne' => $passwNE,'state' => 'Autorizado']);
     		
     		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil) value (?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante']);
     	}

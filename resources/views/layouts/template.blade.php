@@ -158,7 +158,7 @@
                     
                 <li> <a class="featured_img" href="#"><img src="{{ URL::asset('images/QSMgalapagos.jpg') }}" alt=""></a>
                     <?php
-                    $local=  utf8_encode("Encuentra el cronograma de méritos y oposición");
+                    $local=  utf8_encode("Encuentra el cronograma de m&eacute;ritos y oposici&oacute;n");
                     ?>
                   <div class="featured_title"> <a class="" target="_blank" href="https://educacion.gob.ec/wp-content/uploads/downloads/2017/09/Cronograma-Elegibilidad-Meritos-y-Oposicion-QSM-Galapagos-2017-1.pdf">{!!$local!!}</a> </div>
                 </li>

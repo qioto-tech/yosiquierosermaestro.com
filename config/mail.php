@@ -17,7 +17,7 @@ return [
     */
 
     
-    'driver' => 'sendmail',
+		'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -88,9 +88,9 @@ return [
     |
     */
 
-    'username' => "lopez.renato@gmail.com",
+		'username' => env('MAIL_USERNAME','lopez.renato@gmail.com'),
 
-    'password' => "06027659",
+				'password' => env('MAIL_PASSWORD','06027659'),
 //		'username' => "adrianic_na@gmail.com",
 		
 //		'password' => "0049303411614",
@@ -130,5 +130,13 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+		
+	'stream' => [
+			'ssl' => [
+					'allow_self_signed' => true,
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+			],
+	],
 
 ];
