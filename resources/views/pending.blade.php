@@ -36,7 +36,7 @@
 									<td>{{ $dato->product_description }}</td>
 									<td>{{ $dato->product_amount }}</td>
 									<td>{{ $dato->document_number }}</td>
-									<td><a href="{{ URL::asset('/idoneo/'.$dato->id) }}"> {{ $dato->state }}</a></td>
+									<td><a href="{{ URL::asset('/autorizar/'.$dato->id) }}"> {{ $dato->state }}</a></td>
 								</tr>
 							@endforeach	 
 							</tbody>

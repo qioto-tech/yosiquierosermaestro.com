@@ -355,8 +355,14 @@ class OrderController extends Controller
     public function authorize_payment( $order ){
     	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->where('orders.id',$order)
-    	->select('orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('orders.code','orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
     	->get();
+    	
+    	$user = $this->actualizarmce ($orders_persons);
+    	//$this->dispatch(new Envio_Mensaje($orders_persons[0]));
+    	
+//    	return Redirect::to('http://www.yosiquierosermaestro.com/pendientes');
+    	return Redirect::to('http://yosiquierosermaestro.local/pendientes');
     }
     
     private function generateRandomString($length = 5) {
@@ -369,17 +375,17 @@ class OrderController extends Controller
     	return $randomString;
     }
     
-    private function actualizarmce ($orderId)
+    private function actualizarmce ($datas)
     {
-    	$datas = DB::connection('yosiquierosermaestro')->select('select persons.*, orders.product_description from persons inner join orders on orders.customer_id = persons.id  where code = ?', [$orderId]);
-    	
     	foreach ($datas as $data){
-    		$usuario = 'Aspirante_'.$orderId;
+    		$usuario = 'Aspirante_'.$data->code;
     		
     		$passwNE = $this->generateRandomString();
     		$password = md5($passwNE);
-    		$order = DB::connection('yosiquierosermaestro')->update('update orders set password_ne = ? where code = ?', [$passwNE, $orderId]);
     		
+    		DB::table('orders')
+    		->where('code',$data->code)
+    		->update(['password_ne' => $password,'state' => 'Autorizado']);
     		
     		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil) value (?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante']);
     	}
