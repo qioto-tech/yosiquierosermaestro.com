@@ -9,6 +9,7 @@ use App\Constant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\Envio_Mensaje;
+use App\Jobs\Payment_Deposit;
 use Redirect;
 
 class OrderController extends Controller
@@ -81,7 +82,7 @@ class OrderController extends Controller
     		return Redirect::to('https://pagosqioto.local/api/payment/'.$order->id);//
     	} else {
     		$order = $this->payment_transfer( $request );
-    		
+    		$this->dispatch(new Payment_Deposit( $order ));
     		return view('payment_transfer',[ 'datos'=> $order ]);//
     		
     	}
@@ -359,6 +360,44 @@ class OrderController extends Controller
     
     public function deposit($order){
     	return view('deposit',[ 'datos'=> $order]);
+    }
+
+    public function update_capacitate_ecuador($order){
+    	return view('deposit',[ 'datos'=> $order]);
+    }
+    
+    public function authorize_payment( $order ){
+    	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->where('orders.id',$order)
+    	->select('orders.product_description', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->get();
+    }
+    
+    private function generateRandomString($length = 5) {
+    	$characters = '123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+    	$charactersLength = strlen($characters);
+    	$randomString = '';
+    	for ($i = 0; $i < $length; $i++) {
+    		$randomString .= $characters[rand(0, $charactersLength - 1)];
+    	}
+    	return $randomString;
+    }
+    
+    private function actualizarmce ($orderId)
+    {
+    	$datas = DB::connection('yosiquierosermaestro')->select('select persons.*, orders.product_description from persons inner join orders on orders.customer_id = persons.id  where code = ?', [$orderId]);
+    	
+    	foreach ($datas as $data){
+    		$usuario = 'Aspirante_'.$orderId;
+    		
+    		$passwNE = $this->generateRandomString();
+    		$password = md5($passwNE);
+    		$order = DB::connection('yosiquierosermaestro')->update('update orders set password_ne = ? where code = ?', [$passwNE, $orderId]);
+    		
+    		
+    		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil) value (?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante']);
+    	}
+    	return $user;
     }
     
 }

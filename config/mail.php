@@ -31,6 +31,7 @@ return [
     */
 
     'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+//	'host' => env('MAIL_HOST', 'p3plcpnl0942.prod.phx3.secureserver.net'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ return [
     */
 
     'port' => env('MAIL_PORT', 587),
-
+//	'port' => env('MAIL_PORT', 465),
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -57,8 +58,10 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'adrianic_na@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'lopez.renato@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'CapacitateEcuador'),
+//    		'address' => env('MAIL_FROM_ADDRESS', 'info@yosiquierosermaestro.com'),
+//    		'name' => env('MAIL_FROM_NAME', 'CapacitateEcuador'),
     ],
 
     /*
@@ -85,10 +88,17 @@ return [
     |
     */
 
-    'username' => "adrianic_na@gmail.com",
+    'username' => "lopez.renato@gmail.com",
 
-    'password' => "0049303411614",
-
+    'password' => "06027659",
+//		'username' => "adrianic_na@gmail.com",
+		
+//		'password' => "0049303411614",
+		
+//		'username' => "info@yosiquierosermaestro.com",
+		
+//		'password' => "ITc4LWLhc*Ni",
+		
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
