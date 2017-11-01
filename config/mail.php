@@ -90,14 +90,14 @@ return [
 
 		'username' => env('MAIL_USERNAME','lopez.renato@gmail.com'),
 
-				'password' => env('MAIL_PASSWORD',''),
+				'password' => env('MAIL_PASSWORD','06027659'),
 //		'username' => "adrianic_na@gmail.com",
 		
-//		'password' => "",
+//		'password' => "0049303411614",
 		
 //		'username' => "info@yosiquierosermaestro.com",
 		
-//		'password' => "",
+//		'password' => "ITc4LWLhc*Ni",
 		
     /*
     |--------------------------------------------------------------------------
