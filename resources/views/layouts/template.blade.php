@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="{{ URL::asset('assets/css/font.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('assets/css/animate.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('assets/css/structure.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('assets/css/structure.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('assets/popupModal/basic.css') }}">
+
 <!--[if lt IE 9]>
 <script src="{{ URL::asset('assets/js/html5shiv.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/respond.min.js') }}"></script>

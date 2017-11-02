@@ -1,14 +1,12 @@
 
 
-<!--{!! HTML::style('/packages/bootstrap/css/bootstrap.min.css') !!}
-{!! HTML::style('/assets/css/style.css') !!}-->
-{!! HTML::style('public/packages/dropzone/dropzone.css') !!}
-<!-- End Dropzone Preview Template -->
-{!! HTML::script('public/packages/dropzone/dropzone.js') !!}
-{!! HTML::script('public/assets/js/dropzone-config.js') !!}
+<link rel="stylesheet" href="{{ URL::asset('assets/dropzone/dropzone.css') }}">
+<script src="{{ URL::asset('assets/dropzone/dropzone.js') }}"></script> 
+<script src="{{ URL::asset('assets/dropzone/dropzone-config.js') }}"></script> 
+
  
 <div class="row">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    
         <div class="col-md-offset-1 col-md-10">
             <div class="jumbotron how-to-create" >
 
@@ -17,8 +15,10 @@
 
                 {!! Form::open(['url' => route('upload-post'), 'class' => 'dropzone', 'files'=>true, 'id'=>'real-dropzone']) !!}
 
+
+
                 
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
                     <input type="hidden" id="id_catalogo_fotografia" name="id_catalogo_fotografia" value="0">
                         <input type="hidden" id="id_usuario_servicio" name="id_usuario_servicio" value="0">
                             <input type="hidden" id="id_auxiliar" name="id_auxiliar" value="0">

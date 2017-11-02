@@ -159,10 +159,9 @@ class OrderController extends Controller
      */
     public function RenderPartial($id_partial) {
         //
-        print_r($id_partial);
-        die();
-        $html = (String) view($id_partial);
         
+        $html = (String) view('uploadImagePopUp');
+       
         return response()->json(['newHtml' => $html]);
     }
     
@@ -282,6 +281,7 @@ class OrderController extends Controller
     }
     
     public function deposit($order){
+        //dd($order);
     	return view('deposit',[ 'datos'=> $order]);
     }
 

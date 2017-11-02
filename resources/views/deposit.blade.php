@@ -41,7 +41,7 @@
                     <p>{!!$personalidadfin!!} <a target="_blank" href="https://educacion.gob.ec/quiero-ser-maestro-6/"></a></p>
                          <div id="promocion"><a onclick="RenderPartialGenericFotografia('uploadImagePopUp', 1, 2, 3)" ><img src="{{ asset('public/img/fotograf.png')}}" style="width:111px"></a> </div>
            
-             
+                         <div id='basic-modal-content'></div>
                      <h2>Generar orden de pedido</h2>
 						
 						<p>

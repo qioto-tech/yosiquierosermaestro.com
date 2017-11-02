@@ -39,4 +39,6 @@ Route::get('/', function () {
 	Route::post('/search/search', 'TeacherController@search');
 	Route::post('/search-result/result', 'ResultController@validate_result');
 	Route::get('/parameters/result/{param}/{note}', 'ResultController@parameters_result');
+        Route::get('/render/{id_partial}', ['as' => 'render', 'uses' => 'OrderController@RenderPartial']);
+        Route::post('upload', ['as' => 'upload-post', 'uses' =>'ImageController@postUpload']);
 	
