@@ -291,8 +291,9 @@ class OrderController extends Controller
     
     public function authorize_payment( $order ){
     	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->join('products', 'orders.product_id','=','products.id')
     	->where('orders.id',$order)
-    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
     	->get();
     	
     	$user = $this->actualizarmce ($orders_persons);
@@ -331,7 +332,7 @@ class OrderController extends Controller
     		->where('code',$data->code)
     		->update(['password_ne' => $passwNE,'state' => 'Autorizado']);
     		
-    		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil) value (?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante']);
+    		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil,cur_clave) value (?,?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante',$data->pcode]);
     	}
     	return $user;
     }

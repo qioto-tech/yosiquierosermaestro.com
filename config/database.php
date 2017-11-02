@@ -80,11 +80,11 @@ return [
     		
     		'mecapacitoecuador' => [
     				'driver' => 'mysql',
-    				'host' => '',
+    				'host' => '23.229.199.41',
     				'port' => '3306',
-    				'database' => '',
-    				'username' => '',
-    				'password' => '',
+    				'database' => 'i3988612_mood1',
+    				'username' => 'remotopagosqioto',
+    				'password' => '$z^}R3w~Qw+P',
     				'unix_socket' => '',
     				'charset' => 'utf8mb4',
     				'collation' => 'utf8mb4_unicode_ci',

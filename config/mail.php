@@ -90,7 +90,7 @@ return [
 
 		'username' => env('MAIL_USERNAME','lopez.renato@gmail.com'),
 
-				'password' => env('MAIL_PASSWORD',''),
+				'password' => env('MAIL_PASSWORD','$Skater$$3165'),
 //		'username' => "adrianic_na@gmail.com",
 		
 //		'password' => "",
