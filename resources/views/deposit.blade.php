@@ -41,7 +41,7 @@
                     <p>{!!$personalidadfin!!} <a target="_blank" href="https://educacion.gob.ec/quiero-ser-maestro-6/"></a></p>
                          <div id="promocion"><a onclick="RenderPartialGenericFotografia('uploadImagePopUp', 1, 2, 3)" ><img src="{{ asset('public/img/fotograf.png')}}" style="width:111px"></a> </div>
            
-                         <div id='basic-modal-content'></div>
+           
                      <h2>Generar orden de pedido</h2>
 						
 						<p>
@@ -188,7 +188,7 @@ $('#submit').attr('disabled', 'disabled');
 
 function RenderPartialGenericFotografia($idPartial, $id_catalogo_fotografia,$id_usuario_servicio,$id_auxiliar) {
 
-   alert("here");
+   
 callModal('cls');
     var url = "/yosiquierosermaestro.com/public/render/" + $idPartial;
     $.ajax({
@@ -198,10 +198,8 @@ callModal('cls');
         }}).done(function (newHtml) {
 
         /* output the javascript object to HTML */
-        $('#basic-modal-content').html(newHtml.newHtml);
-        $('#basic-modal-content').find('#id_catalogo_fotografia').val($id_catalogo_fotografia);
-        $('#basic-modal-content').find('#id_usuario_servicio').val($id_usuario_servicio);
-        $('#basic-modal-content').find('#id_auxiliar').val($id_auxiliar);
+        $('#simplemodal-container').html(newHtml.newHtml);
+        
     });
 }
 

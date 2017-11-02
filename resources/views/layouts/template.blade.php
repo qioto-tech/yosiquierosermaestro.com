@@ -219,8 +219,9 @@
 <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script> 
 <script src="{{ URL::asset('assets/js/wow.min.js') }}"></script> 
 <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
-<script src="http://localhost/yosiquierosermaestro.com/resources/assets/js/jquery.simplemodal.js"></script>
-<script src="http://localhost/yosiquierosermaestro.com/resources/assets/js/basic.js"></script>
+<script src="{{ URL::asset('assets/js/jquery.simplemodal.js') }}"></script>
+<script src="{{ URL::asset('assets/js/basic.js') }}"></script>
+
 
 
 <script>

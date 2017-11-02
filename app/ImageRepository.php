@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace App;
 
-use App\Order;
+use App\Image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Config;
@@ -16,7 +16,7 @@ class ImageRepository {
     public function upload($form_data) {
 
         $validator = Validator::make($form_data, Image::$rules, Image::$messages);
-
+print_r("hre");
 
         if ($validator->fails()) {
 
@@ -40,17 +40,17 @@ class ImageRepository {
         $allowed_filename = $this->createUniqueFilename($filename);
 
 
-        $filenameExt = $form_data['id_auxiliar'] . $allowed_filename . '.jpg';
+        $filenameExt = $form_data['num_documento'] . $allowed_filename . '.jpg';
 
 
 
         $uploadSuccess1 = $this->original($photo, $filenameExt);
 
 
-        $uploadSuccess2 = $this->icon($photo, $filenameExt);
+      //  $uploadSuccess2 = $this->icon($photo, $filenameExt);
 
 
-        if (!$uploadSuccess1 || !$uploadSuccess2) {
+        if (!$uploadSuccess1 ) {
 
             return Response::json([
                         'error' => true,
@@ -59,13 +59,11 @@ class ImageRepository {
                             ], 500);
         }
 
-        $sessionImage = new Image;
-        $sessionImage->filename = $form_data['id_auxiliar'] . $allowed_filename . '.jpg';
-        $sessionImage->original_name = $originalName;
-        $sessionImage->id_catalogo_fotografia = $form_data['id_catalogo_fotografia'];
-        $sessionImage->id_usuario_servicio = $form_data['id_usuario_servicio'];
-        $sessionImage->id_auxiliar = $form_data['id_auxiliar'];
-        $sessionImage->estado_fotografia = 1;
+        $sessionImage = new Order;
+        $sessionImage->documento_number = $form_data['num_documento'] . $allowed_filename . '.jpg';
+        $sessionImage->document_path = $originalName;
+        
+
 
 
 
@@ -78,7 +76,7 @@ class ImageRepository {
     }
 
     public function createUniqueFilename($filename) {
-        $full_size_dir = 'imagesg/fullsize/';
+        $full_size_dir = 'storage/app/public';
         $full_image_path = $full_size_dir . $filename . '.jpg';
 
         if (File::exists($full_image_path)) {
@@ -90,42 +88,15 @@ class ImageRepository {
         return $filename;
     }
 
-    public function storeDescrFoto($inputs, $usuario_servicio,$id) {
-
-
-        
-        DB::table('images')
-                ->where('id', '=', $inputs['ids'])
-                ->update(['descripcion_fotografia' => $inputs['descripcion_fotografia_'.$id]]);
-
-
-        return true;
-    }
-
-    public function storeUpdateEstado($inputs, $usuario_servicio) {
-
-
-        DB::table('images')
-                ->where('id', '=', $inputs['ids'])
-                ->update(['estado_fotografia' => 0]);
-
-
-        return true;
-    }
-
-    //Entrega el arreglo de Servicios por operador
-    public function getServiciosImageporId($id_image) {
-
-        return DB::table('images')
-                        ->where('id', '=', $id_image)->get();
-    }
+  
+ 
 
     /**
      * Optimize Original Image
      */
     public function original($photo, $filename) {
         $manager = new ImageManager();
-        $image = $manager->make($photo)->encode('jpg')->save('images/fullsize/' . $filename);
+        $image = $manager->make($photo)->encode('jpg')->save('storage/app/public' . $filename);
 
         return $image;
     }

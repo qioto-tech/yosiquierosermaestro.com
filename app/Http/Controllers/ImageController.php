@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Provider\ImageRepository;
+use App\ImageRepository;
 use Illuminate\Support\Facades\Input;
 
 class ImageController extends Controller
@@ -22,7 +22,9 @@ class ImageController extends Controller
     public function postUpload()
     {
         $photo = Input::all();
+        
         $response = $this->image->upload($photo);
+        dd($response);
         return $response;
 
     }
