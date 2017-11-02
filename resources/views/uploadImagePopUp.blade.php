@@ -19,14 +19,9 @@
 
                 
                 
-                    <input type="hidden" id="order_id" name="order_id" value="0">
+                    <input type="hidden" id="order_id" name="order_id" value="1">
                                 
-                                <div class="form-group">
-    <label class="control-label col-sm-2" for="customer_email"># de documento:</label>
-    <div class="col-sm-10">
-      {!! Form::text('num_documento',null,['class'=>'form-control', 'placeholder'=>'Numero de documento','size'=>'60', 'id'=>'num_documento', 'name'=>'num_documento']) !!}
-    </div>
-  </div>
+                                
                 <div class="dz-message">
 
                 </div>

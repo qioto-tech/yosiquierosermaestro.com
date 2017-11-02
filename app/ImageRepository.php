@@ -16,7 +16,7 @@ class ImageRepository {
     public function upload($form_data) {
 
         $validator = Validator::make($form_data, Image::$rules, Image::$messages);
-print_r("hre");
+
 
         if ($validator->fails()) {
 
@@ -59,15 +59,16 @@ print_r("hre");
                             ], 500);
         }
 
-        $sessionImage = new Order;
-        $sessionImage->documento_number = $form_data['num_documento'] . $allowed_filename . '.jpg';
-        $sessionImage->document_path = $originalName;
+        
         
 
+	DB::table('orders')
+    	->where('id',$form_data['order_id'])
+    	->update(['document_number' => $form_data['num_documento'], 'document_path'=> $form_data['num_documento'] . $allowed_filename . '.jpg']);
+    	
 
 
-
-        $sessionImage->save();
+        //$sessionImage->update();
 
         return Response::json([
                     'error' => false,
@@ -76,7 +77,7 @@ print_r("hre");
     }
 
     public function createUniqueFilename($filename) {
-        $full_size_dir = 'storage/app/public';
+        $full_size_dir = '7storage/app/public/depositos';
         $full_image_path = $full_size_dir . $filename . '.jpg';
 
         if (File::exists($full_image_path)) {
@@ -96,7 +97,7 @@ print_r("hre");
      */
     public function original($photo, $filename) {
         $manager = new ImageManager();
-        $image = $manager->make($photo)->encode('jpg')->save('storage/app/public' . $filename);
+        $image = $manager->make($photo)->encode('jpg')->save('public' . $filename);
 
         return $image;
     }
