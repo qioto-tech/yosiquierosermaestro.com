@@ -64,7 +64,7 @@ class ImageRepository {
 
 	DB::table('orders')
     	->where('id',$form_data['order_id'])
-    	->update(['document_number' => $form_data['num_documento'], 'document_path'=> $form_data['num_documento'] . $allowed_filename . '.jpg']);
+    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> "public/".$form_data['num_documento'] . $allowed_filename . '.jpg']);
     	
 
 
@@ -77,7 +77,7 @@ class ImageRepository {
     }
 
     public function createUniqueFilename($filename) {
-        $full_size_dir = '7storage/app/public/depositos';
+        $full_size_dir = 'public';
         $full_image_path = $full_size_dir . $filename . '.jpg';
 
         if (File::exists($full_image_path)) {
