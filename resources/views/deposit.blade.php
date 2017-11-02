@@ -190,7 +190,7 @@ function RenderPartialGenericFotografia($idPartial, $id_catalogo_fotografia,$id_
 
    
 callModal('cls');
-    var url = "/yosiquierosermaestro.com/public/render/" + $idPartial;
+    var url = "render/" + $idPartial;
     $.ajax({
         type: "GET",
         url: url,
