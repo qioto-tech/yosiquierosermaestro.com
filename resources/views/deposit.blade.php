@@ -15,9 +15,9 @@
 @section('info')
 
 <?php
-$personalidada = utf8_encode("Para comprobar el depósito bancario realizado se ha automatizado el sistema para su comodidad");
-$personalidad = utf8_encode("Debe ingresar el número de documento bancario que se describe en el comprobante entregado en el banco");
-$personalidad2 = utf8_encode("Finalmente se debe cargar la imagen del deposito o transferencia bancaria");
+$personalidada = ("Para comprobar el depósito bancario realizado se ha automatizado el sistema para su comodidad");
+$personalidad = ("Debe ingresar el número de comprobante de la papeleta de depósito bancario");
+$personalidad2 = ("Finalmente se debe cargar la imagen o fotografía del deposito o transferencia bancaria");
 ?>
 
 
@@ -34,6 +34,55 @@ $personalidad2 = utf8_encode("Finalmente se debe cargar la imagen del deposito o
                 <p>{!!$personalidad!!}</p>
                 <br>
                 <p>{!!$personalidad2!!}</p>
+                
+                
+              	<p>
+			          <table class="table table-bordered  table-hover">
+			            <thead>
+			              <tr>
+			                <th>#</th>
+			                <th>Descripcion</th>
+			              </tr>
+			            </thead>
+			            <tbody>
+                    
+                    
+		              <tr> 
+		              	<td>Cedula</td> 
+		                <td>{!!$datos->customer_ci!!}</td>
+		              </tr>
+		              <tr>
+		                <td>Nombre</td>
+		                <td>{!!$datos->customer_name!!}</td>
+		              </tr>
+		              <tr> 
+		              	<td>Apellido</td> 
+		              	<td>{!!$datos->customer_lastname!!}</td>
+		              </tr>
+		              <tr> 
+		              	<td>Estado</td> 
+		                <td>{!!$datos->state!!}</td>
+		              </tr>
+		            
+                    
+                    
+                    
+                    
+            </tbody>
+          </table>
+                    
+                   </p> 
+
+                
+                    
+                    
+                    
+                    <br>
+                    <br>
+                    
+                        
+                    
+                
                 <div id="ptm">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="customer_email"># de documento:</label>
@@ -51,7 +100,7 @@ $personalidad2 = utf8_encode("Finalmente se debe cargar la imagen del deposito o
                             {!! Form::open(['url' => route('upload-post'), 'class' => 'dropzone', 'files'=>true, 'id'=>'real-dropzone']) !!}
 
                             <input type="hidden" id="num_documento" name="num_documento" >
-                            <input type="hidden" id="order_id" name="order_id" value="{{$datos}}">
+                            <input type="hidden" id="order_id" name="order_id" value="{{$datos->order_id}}">
 
 
                             <div class="dz-message">
