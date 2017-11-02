@@ -1221,7 +1221,7 @@
             <table class="one-col-bg" style="border-collapse: collapse;border-spacing: 0;width: 100%;">
                 <tbody><tr>
                         <td style="padding: 0;vertical-align: top;" align="center">
-                            <table class="one-col centered column-bg" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;background-color: #0F82A8;width: 600px;table-layout: fixed;" emb-background-style>
+                            <table class="one-col centered column-bg" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;background-color: #0F82A8;width: 800px;table-layout: fixed;" emb-background-style>
                                 <tbody><tr>
                                         <td class="column" style="padding: 0;vertical-align: top;text-align: left;">
 
@@ -1233,13 +1233,13 @@
 
 
                                                             <h3 style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 32px;font-size: 16px;line-height: 24px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
-                                                                Bienvenido te has inscrito en el programa de entrenamiento virtual 
+                                                                Bienvenid@ {!!$nombre!!} {!!$apellido!!} te has inscrito en el programa de entrenamiento virtual 
                                                             </h3>
                                                             
                                                             <h1 style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
                                                                 Me Capacito Ecuador </h1>
                                                             <p style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 16px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;">
-                                                              Gracias por tu compra, aquí se encuentran las credenciales para poder ingresar al simulador de personalidad, prueba necesaria para obtener la idoneidad den Ministerio de Educación 
+                                                              A continuaci&oacute;n se encuentran las credenciales para poder ingresar al simulador de la prueba, requisito necesario para obtener la elegibilidad y poder participar en el concurso de M&eacute;ritos y Oposici&oacute;n del Ministerio de Educaci&oacute;n y alcanzar tu nombramiento.
                                                                </p>
                                                             <ul style="font-style: normal;font-weight: 400;padding-left: 0;Margin-bottom: 32px;Margin-top: 32px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;Margin-left: 48px;">
                                                                 
@@ -1249,8 +1249,16 @@
                                                                  {!!$usuario!!} </span></li>
                                                                 <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
                                                                      <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
-                                                                          Clave: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
+                                                                          Contrase�a: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
                                                                           {!!$password!!}</span></li>
+                                                                <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
+                                                                     <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
+                                                                          Curso: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
+                                                                          {!!$curso!!}</span></li>
+                                                                <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
+                                                                     <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
+                                                                          Clave de inscripci&oacute;n: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
+                                                                          {!!$code!!}</span></li>
                                                                 
                                                             </ul>
                                                             
