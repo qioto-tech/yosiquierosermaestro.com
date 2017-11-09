@@ -29,7 +29,7 @@ class Payment_Deposit extends Job
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->join('products', 'orders.product_id','=','products.id')
     	->where('orders.id',$order)
-    	->select('products.name as pname','orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
+    	->select('products.name as pname','orders.product_description','orders.id', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
     	->get();
 
     	$this->order = $datos[0];
@@ -55,7 +55,7 @@ class Payment_Deposit extends Job
         
         $mailer->send('paymentEmail', $data, function($message) {
             $message->to($this->order->customer_email)
-            ->subject("Solicitud de Inscripción a la prueba de " . $this->order->pname);
+            ->subject(utf8_encode("Solicitud de Inscripción a la prueba de " . $this->order->pname));
         });
     }
     

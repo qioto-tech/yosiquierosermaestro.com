@@ -199,7 +199,7 @@ class OrderController extends Controller
     private function payment_credit_card( $request ){
     	
     	$product = $this->search_product( $request->product );
-    	$person = $this->search_person( $request->customer_ci);
+    	$person = $this->search_person( $request->customer_ci, $request);
     	$order = $this->new_order($person, $product, 1);
      	
 		return $order;
@@ -208,7 +208,7 @@ class OrderController extends Controller
     private function payment_transfer( $request ){
     	
     	$product = $this->search_product( $request->product );
-    	$person = $this->search_person( $request->customer_ci);
+    	$person = $this->search_person( $request->customer_ci, $request);
     	$order = $this->new_order($person, $product, 2);
     	
     	return $order;
@@ -222,7 +222,7 @@ class OrderController extends Controller
     	return $product;
     }
 
-    private function search_person( $person_ci ){
+    private function search_person( $person_ci, $request){
     	$person = DB::table('persons')
     	->where('customer_ci',$person_ci)
     	->get();
