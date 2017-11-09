@@ -1221,7 +1221,7 @@
             <table class="one-col-bg" style="border-collapse: collapse;border-spacing: 0;width: 100%;">
                 <tbody><tr>
                         <td style="padding: 0;vertical-align: top;" align="center">
-                            <table class="one-col centered column-bg" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;background-color: #0F82A8;width: 600px;table-layout: fixed;" emb-background-style>
+                            <table class="one-col centered column-bg" style="border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-right: auto;background-color: #0F82A8;width: 800px;table-layout: fixed;" emb-background-style>
                                 <tbody><tr>
                                         <td class="column" style="padding: 0;vertical-align: top;text-align: left;">
 
@@ -1233,13 +1233,13 @@
 
 
                                                             <h3 style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 32px;font-size: 16px;line-height: 24px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
-                                                                Bienvenido te has inscrito en el programa de entrenamiento virtual 
+                                                                Bienvenid@ {!!$nombre!!} {!!$apellido!!}, estas a punto de ser parte de la plataforma de entrenamiento virtual. 
                                                             </h3>
                                                             
                                                             <h1 style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
                                                                 Me Capacito Ecuador </h1>
                                                             <p style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 16px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;">
-                                                              Gracias por tu compra, aqu&iacute; se encuentran los datos de la cuenta bancaria para realizar el dep&oacute;sito para poder ingresar al simulador de personalidad, prueba necesaria para obtener la idoneidad den Ministerio de Educaci&oacute;n 
+                                                              A continuaci&oacute;n, se encuentran los datos de la cuenta bancaria para poder ingresar al simulador de la prueba, requisito necesario para obtener la elegibilidad y poder participar en el concurso de M&eacute;ritos y Oposici&oacute;n del Ministerio de Educaci&oacute;n y alcanzar tu nombramiento.  
                                                                </p>
                                                             <ul style="font-style: normal;font-weight: 400;padding-left: 0;Margin-bottom: 32px;Margin-top: 32px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;Margin-left: 48px;">
                                                                 

@@ -22,9 +22,14 @@ class Payment_Deposit extends Job
     public function __construct( $order )
     {
         //
+//     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
+//     	->where('orders.id',$order)
+//     	->select('orders.id','persons.customer_email')
+//     	->get();
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->join('products', 'orders.product_id','=','products.id')
     	->where('orders.id',$order)
-    	->select('orders.id','persons.customer_email')
+    	->select('products.name as pname','orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
     	->get();
 
     	$this->order = $datos[0];
@@ -43,11 +48,14 @@ class Payment_Deposit extends Job
             'nombrede'  => "Capacitate Ecuador",
             'orden'   => $this->order->id,
         	'email'   => $this->order->customer_email,
+        	'nombre'   => strtoupper($this->order->customer_name),
+        	'apellido'   => strtoupper($this->order->customer_lastname),
+        	'code'   => $this->order->pcode,
         ];
         
         $mailer->send('paymentEmail', $data, function($message) {
             $message->to($this->order->customer_email)
-                    ->subject("Pago Pendiente Capacitate Ecuador");
+            ->subject("Solicitud de Inscripción a la prueba de " . $this->order->pname);
         });
     }
     

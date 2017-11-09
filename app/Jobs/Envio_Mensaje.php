@@ -38,12 +38,16 @@ class Envio_Mensaje extends Job
             'nombrede'  => "Capacitate Ecuador",
             'usuario'   => "Aspirante_".$this->order->code,
             'password'   => $this->order->password_ne,
-            
+        	'nombre'   => strtoupper($this->order->customer_name),
+        	'apellido'   => strtoupper($this->order->customer_lastname),
+        	'code'   => $this->order->pcode,
+        	'curso'   => $this->order->pname,
+        		
         ];
         
         $mailer->send('confirmEmail', $data, function($message) {
             $message->to($this->order->customer_email)
-                    ->subject("Confirmacion Capacitate Ecuador");
+            ->subject(utf8_encode("Confirmación de inscripción a la prueba de " . $this->order->pname));
         });
     }
     

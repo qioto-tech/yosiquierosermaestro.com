@@ -170,8 +170,9 @@ class OrderController extends Controller
     {
     	
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->join('products', 'orders.product_id','=','products.id')
     	->where('orders.code',$order)
-    	->select('orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('products.name as pname','orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
     	->get();
     	
     	$usuario = 'Aspirante_'.$datos[0]->code;
@@ -310,8 +311,9 @@ class OrderController extends Controller
     	$user = $this->actualizarmce ($orders_persons);
     	
     	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->join('products', 'orders.product_id','=','products.id')
     	->where('orders.id',$order)
-    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email')
+    	->select('products.name as pname','orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
     	->get();
     	
     	
