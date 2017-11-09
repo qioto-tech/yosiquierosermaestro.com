@@ -138,11 +138,11 @@
               <ul class="featured_nav">
                   
                   
-                      <li> <a class="featured_img" href="{{ URL::asset('/tips') }}"><img src="{{ URL::asset('images/test.jpg') }}" alt=""></a>
+                      <li> <a class="featured_img" href="http://www.mecapacitoecuador.com"><img src="{{ URL::asset('images/capacitacion-y-reciclaje-1.jpg') }}" alt=""></a>
                     <?php
-                    $localx=  utf8_encode("Prepárate para las pruebas");
+                    $localx=  utf8_encode("Prep&aacute;rate para las pruebas, Ingresa a nuestro Simulador");
                     ?>
-                  <div class="featured_title"> <a class="" href="{{ URL::asset('/tips') }}">{!!$localx!!}</a> </div>
+                  <div class="featured_title"> <a class="" style="color: red;" href="http://www.mecapacitoecuador.com" target="_blank">{!!$localx!!}</a> </div>
                 </li>
                 
                 

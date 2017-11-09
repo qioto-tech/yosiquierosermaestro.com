@@ -52,7 +52,7 @@
                    <br> 
                       <?php
                    
-                    $personalidad4=utf8_encode("Para verificar los archivos oficiales del Ministerio de Educación de donde se obtiene esta información has click  ");
+                    $personalidad4=utf8_encode("Para verificar los archivos oficiales del Ministerio de Educaci&oacute;n de donde se obtiene esta informaci&oacute;n has click  ");
                     ?>
 <p>{!!$personalidad4!!} <a target="_blank" href="https://educacion.gob.ec/quiero-ser-maestro-6/">aqui...</a></p>
 <p>Si tienes alguna duda al respecto de tu elegibilidad comunicate a quierosermaestro@educacion.gob.ec </p>
