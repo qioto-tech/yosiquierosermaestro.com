@@ -285,7 +285,18 @@ class OrderController extends Controller
     
     public function deposit($order){
         //dd($order);
-    	return view('deposit',[ 'datos'=> $order]);
+    	
+        $orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->join('products', 'orders.product_id','=','products.id')
+    	->where('orders.id',$order)
+    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode','orders.state')
+    	->first();
+    	
+        if($orders_persons!=null)
+        return view('deposit',[ 'datos'=> $orders_persons]);
+        else
+          return redirect('/');
+            
     }
 
     public function update_capacitate_ecuador($order){

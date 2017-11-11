@@ -14,6 +14,7 @@
                       
                       
                                 
+<<<<<<< HEAD
                     $personalidada=utf8_encode("EL Ministerio de Educaci�n del Ecuador ha declarado recientemente el inicio de la toma de ex�menes psicom�tricos para los aspirantes a docentes del proceso QSM6. Proceso que ofrece cerca de 20 mil plazas de trabajo con nombramiento para docentes de las diferentes especialidades a nivel nacional.");
                     $personalidad=("");
                     $personalidad2=utf8_encode("Es por ello que se exhorta a los interesados a no perder esta oportunidad, que pudiera ser la �ltima, de participar para obtener una plaza de trabajo dentro del Magisterio.");
@@ -28,6 +29,22 @@
                     $personalidadBAN=utf8_encode("Simulador de ex�men: Contamos con bancos de preguntas para repasar antes de presentar el examen. Se provee feedback sobre las preguntas, ayud�ndote a mejorar y reforzar tus conocimientos. ");
                     $personalidadesp=utf8_encode("Sigue los tips y recomendaciones para facilitarte el entrenamiento");
                     $personalidadfin6=utf8_encode("Ingresa a los simuladores de las pruebas psicom�tricas generando una orden de pedido y el pago correspondiente, si tienes alguna duda puedes contactarte con nosotros a info@yosiquierosermaestro.com o siguenos en facebook ");
+=======
+                    $personalidada=utf8_encode("EL Ministerio de Educación del Ecuador ha declarado recientemente el inicio de la toma de exámenes psicométricos para los aspirantes a docentes del proceso QSM6. Proceso que ofrece cerca de 20 mil plazas de trabajo con nombramiento para docentes de las diferentes especialidades a nivel nacional.");
+                    $personalidad=("");
+                    $personalidad2=utf8_encode("Es por ello que se exhorta a los interesados a no perder esta oportunidad, que pudiera ser la última, de participar para obtener una plaza de trabajo dentro del Magisterio.");
+                    
+                    $personalidad4=utf8_encode("Al aplicar a nuestro servicio de capacitación y entrenamiento virtual práctico Me Capacito Ecuador, contarás con la asesoría de profesionales expertos en el tema de pruebas psicométricas y de conocimientos, quienes han desarrollado cuidadosamente el banco de preguntas para cada participación, y así evitar errores que podrían significar la anulación de tu prueba.");
+                    $personalidadfin=utf8_encode("El organismo oficial declaró que las pruebas empezarán a partir de 9 de Noviembre durante los siguientes 2 meses.");
+                    $personalidadfin2=utf8_encode("El servicio de YoSiQuierosermaestro.com y MeCapacitoEcuador.com en ningún momento representa al organismo oficial, solo presta un servicio serio y eficiente de capacitación práctica para las diferentes pruebas que tomará del Ministerio. El contratar nuestros servicios garantiza su correcta capacitación y sobresaliente participación en el proceso. Los datos suministrados por medio de esta página web tienen como finalidad únicamente informar.");
+                     
+                    
+                    
+                    $personalidadven=utf8_encode("Nuestros cursos y pruebas de capacitación se adaptan a tu tiempo y espacio, puedes acceder en el horario que se ajuste mejor a ti y desde el lugar que te encuentres. ");
+                    $personalidadBAN=utf8_encode("Simulador de exámen: Contamos con bancos de preguntas para repasar antes de presentar el examen. Se provee feedback sobre las preguntas, ayudándote a mejorar y reforzar tus conocimientos. ");
+                    $personalidadesp=utf8_encode("Sigue los tips y recomendaciones para facilitarte el entrenamiento");
+                    $personalidadfin6=utf8_encode("Ingresa a los simuladores de las pruebas psicométricas generando una orden de pedido y el pago correspondiente, si tienes alguna duda puedes contactarte con nosotros a info@yosiquierosermaestro.com o siguenos en facebook ");
+>>>>>>> 98353f8cdead274c0e220af2d8d9dbe869c26c25
                ?>
 
 
@@ -38,18 +55,36 @@
                 <div class="single_sarticle_inner"> 
                   <div class="stuff_article_inner">
                       
+<<<<<<< HEAD
                       <div>
 <iframe width="100%" height="230px" src="https://www.youtube.com/embed/jw-P4K-bVyc" frameborder="0" allowfullscreen></iframe>
 </div>
                          <h2>Funcionamiento de la plataforma virtual de entrenamiento</h2>
                                                  
+=======
+                      <div><img style="visibility: visible; ;width: 100%;height: 230px;" src="images/sala.jpg" alt=""></div>
+                         <h2>Bienvenido a la plataforma virtual de entrenamiento</h2>
+                         <p>{!!$personalidada!!}</p>
+                         
+>>>>>>> 98353f8cdead274c0e220af2d8d9dbe869c26c25
                          
                          <p style="color:red"><b >{!!$personalidad4!!} </b></p>
                               
                     
                     <p>{!!$personalidadfin6!!} </p>
                     
+<<<<<<< HEAD
                      <h2>Suscribete al simulador de entrenamiento online</h2>                    
+=======
+                     <h2>Suscribete al simulador de entrenamiento online</h2>
+                     
+                     <p>Los pagos los podras realizar con:</p>
+                     <ul type="circle" style="font-size: 10px"  >
+                         <li>Tarjetas de credito</li>
+                         <li>Transferencias bancarias</li>
+                         <li>Depositos bancarios</li>
+                     </ul>
+>>>>>>> 98353f8cdead274c0e220af2d8d9dbe869c26c25
 						
 						<p>
 
