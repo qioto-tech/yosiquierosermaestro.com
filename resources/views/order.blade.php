@@ -13,17 +13,22 @@
     <?php
                       
                       
-                    $personalidada=utf8_encode("A través del mejoramiento y búsqueda de la calidad y excelencia en el diseño de programas de capacitación, ponemos a disposición de la comunidad docente temáticas de capacitación, alternativas alineadas con las necesidades que busca el Ministerio de Educación.");
-                    $personalidad=utf8_encode("En esta ocasión se han realizado la investigación de las diferentes pruebas psicométricas certificadas a nivel internacional que miden el nivel de personalidad que busca el Ministerio de Educación y se han compilado en un sistema de capacitación que simula un ambiente real de las pruebas que se tomarían por el Ineval y el MinEduc");
-                    $personalidad2=utf8_encode("Para poder acceder a esta plataforma se debe comprar el acceso al sistema que permitirá realizar un intento a la prueba psicométrica por cada pago");
+                                
+                    $personalidada=utf8_encode("EL Ministerio de Educación del Ecuador ha declarado recientemente el inicio de la toma de exámenes psicométricos para los aspirantes a docentes del proceso QSM6. Proceso que ofrece cerca de 20 mil plazas de trabajo con nombramiento para docentes de las diferentes especialidades a nivel nacional.");
+                    $personalidad=("");
+                    $personalidad2=utf8_encode("Es por ello que se exhorta a los interesados a no perder esta oportunidad, que pudiera ser la última, de participar para obtener una plaza de trabajo dentro del Magisterio.");
                     
-                    $personalidad4=utf8_encode("Mientras más te capacites más preparado estarás para las pruebas de personalidad y razonamiento y así obtener tu elegibilidad.");
-                    $personalidadfin=utf8_encode("Empieza a capacitarte ahora, ingresa tus datos para ingresar al simulador. Aceptamos tarjetas Visa y Mastercard de crédito y débito, recuerda que para poder realizar la transacción tu tarjeta deberá estar habilitada para realizar compras electrónicas.");
+                    $personalidad4=utf8_encode("Al aplicar a nuestro servicio de capacitación y entrenamiento virtual práctico Me Capacito Ecuador, contarás con la asesoría de profesionales expertos en el tema de pruebas psicométricas y de conocimientos, quienes han desarrollado cuidadosamente el banco de preguntas para cada participación, y así evitar errores que podrían significar la anulación de tu prueba.");
+                    $personalidadfin=utf8_encode("El organismo oficial declaró que las pruebas empezarán a partir de 9 de Noviembre durante los siguientes 2 meses.");
+                    $personalidadfin2=utf8_encode("El servicio de YoSiQuierosermaestro.com y MeCapacitoEcuador.com en ningún momento representa al organismo oficial, solo presta un servicio serio y eficiente de capacitación práctica para las diferentes pruebas que tomará del Ministerio. El contratar nuestros servicios garantiza su correcta capacitación y sobresaliente participación en el proceso. Los datos suministrados por medio de esta página web tienen como finalidad únicamente informar.");
                      
+                    
+                    
                     $personalidadven=utf8_encode("Nuestros cursos y pruebas de capacitación se adaptan a tu tiempo y espacio, puedes acceder en el horario que se ajuste mejor a ti y desde el lugar que te encuentres. ");
                     $personalidadBAN=utf8_encode("Simulador de exámen: Contamos con bancos de preguntas para repasar antes de presentar el examen. Se provee feedback sobre las preguntas, ayudándote a mejorar y reforzar tus conocimientos. ");
                     $personalidadesp=utf8_encode("Sigue los tips y recomendaciones para facilitarte el entrenamiento");
-                    ?>
+                    $personalidadfin6=utf8_encode("Ingresa a los simuladores de las pruebas psicométricas generando una orden de pedido y el pago correspondiente, si tienes alguna duda puedes contactarte con nosotros a info@yosiquierosermaestro.com o siguenos en facebook ");
+               ?>
 
 
 <div class="single_stuff wow fadeInDown">
@@ -33,14 +38,18 @@
                 <div class="single_sarticle_inner"> 
                   <div class="stuff_article_inner">
                       
-                         <div><img style="visibility: visible; width: 70%;" src="images/visa.png" alt=""></div>
-                         <p>{!!$personalidada!!} <a target="_blank" href="https://educacion.gob.ec/quiero-ser-maestro-6/"></a></p>
-                         <br>
+                      <div>
+<iframe width="100%" height="230px" src="https://www.youtube.com/embed/jw-P4K-bVyc" frameborder="0" allowfullscreen></iframe>
+</div>
+                         <h2>Funcionamiento de la plataforma virtual de entrenamiento</h2>
+                                                 
                          
-                    <p>{!!$personalidadfin!!} <a target="_blank" href="https://educacion.gob.ec/quiero-ser-maestro-6/"></a></p>
+                         <p style="color:red"><b >{!!$personalidad4!!} </b></p>
+                              
                     
-             
-                     <h2>Generar orden de pedido</h2>
+                    <p>{!!$personalidadfin6!!} </p>
+                    
+                     <h2>Suscribete al simulador de entrenamiento online</h2>                    
 						
 						<p>
 
@@ -100,7 +109,7 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       
-       <input id="submit" name="submit" value="Pagar" onclick="validate();" class="btn btn-danger"  type="submit"  />
+       <input id="submit" name="submit" value="Registrarme" onclick="validate();" class="btn btn-danger"  type="submit"  />
 
     </div>
   </div>
@@ -108,6 +117,14 @@
 
 {!!	csrf_field() !!}
 {!! Form::close() !!}
+
+                     <p>Los pagos los podras realizar con:</p>
+                     <ul type="circle" style="font-size: 10px"  >
+                         <li>Tarjetas de credito</li>
+                         <li>Transferencias bancarias</li>
+                         <li>Depositos bancarios</li>
+                     </ul>
+
 
 </p>
 							<div class="col-md-10" id="result-elegible">

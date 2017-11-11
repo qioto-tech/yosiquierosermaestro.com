@@ -27,6 +27,10 @@ Route::get('/', function () {
 	Route::get('/tips', function () {
 		return view('welcomePruebas');
 	});
+	
+	Route::get('/ayuda', function () {
+			return view('helpme');
+		});
 	Route::post('/teacher-search-suitable/search', 'TeacherController@searchTeacher_suitable');
 	Route::post('/teacher-search-elegible/search', 'TeacherController@searchTeacher_elegible');
 	Route::get('/idoneo', 'TeacherController@suitable');

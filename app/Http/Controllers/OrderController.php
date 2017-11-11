@@ -252,6 +252,8 @@ class OrderController extends Controller
     }
     
     private function new_order($person, $product, $pay_type){
+    	$state = ($pay_type == 1)?'Pendiente':'DEPOSITO';
+
     	$order = new Order();
     	
     	$order->commerce_id = $this->commerce_id;
@@ -261,7 +263,7 @@ class OrderController extends Controller
     	$order->product_id = $product[0]->id;
     	//$order->response_url = 'https://www.pagosqioto.com/register/';
     	$order->response_url = $this->response_url;
-    	$order->state = 'DEPOSITO';
+    	$order->state = $state;
     	
     	$order->save();
     	

@@ -35,7 +35,7 @@
 									<td>{{ $dato->code }}</td>
 									<td>{{ $dato->product_description }}</td>
 									<td>{{ $dato->product_amount }}</td>
-									<td>{{ $dato->document_number }}</td>
+									<td><a href="{{ URL::asset($dato->document_path) }}" target="_blank">{{ $dato->document_number }}</a></td>
 									<td><a href="{{ URL::asset('/autorizar/'.$dato->id) }}"> {{ $dato->state }}</a></td>
 								</tr>
 							@endforeach	 
