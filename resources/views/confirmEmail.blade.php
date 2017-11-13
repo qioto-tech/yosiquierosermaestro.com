@@ -1251,6 +1251,19 @@
                                                                      <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
                                                                           Contraseña: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
                                                                           {!!$password!!}</span></li>
+                                                                @if( $list_product->count() > 0 )
+                                                                	@foreach($list_product as $product)
+		                                                                <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
+		                                                                     <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
+		                                                                          Curso: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
+		                                                                          {!!$product->pname!!}</span></li>
+		                                                                <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
+		                                                                     <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
+		                                                                          Clave de inscripci&oacute;n: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
+		                                                                          {!!$product->pcode!!}</span></li>
+                                                                
+                                                                	@endforeach
+                                                                @else
                                                                 <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
                                                                      <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
                                                                           Curso: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
@@ -1259,7 +1272,7 @@
                                                                      <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
                                                                           Clave de inscripci&oacute;n: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
                                                                           {!!$code!!}</span></li>
-                                                                
+                                                                @endif
                                                             </ul>
                                                             
                                                             <p style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 16px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;">

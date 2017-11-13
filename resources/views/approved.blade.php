@@ -69,8 +69,17 @@
 		              	<td>Password</td> 
 		                <td><span style="color: red">{{ $password }}</span></td>
 		              </tr>
+                    	@foreach($list_product as $product)
+ 		              <tr> 
+		              	<td>Curso</td> 
+		                <td><span style="color: red">{{ $product->pname }}</span></td>
+		              </tr>
+		              <tr> 
+		              	<td>Clave</td> 
+		                <td><span style="color: red">{{ $product->pcode }}</span></td>
+		              </tr>
                     
-                    
+                     	@endforeach	 
                     @endforeach	 
                     
             </tbody>

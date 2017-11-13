@@ -181,7 +181,12 @@ class OrderController extends Controller
     	
         $this->dispatch(new Envio_Mensaje($datos[0]));
     	
-    	return view('approved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password]);//
+        $list_product = Product::where('products.promotion',1)
+        ->select('products.name as pname','products.code as pcode')
+        ->get();
+        
+        
+        return view('approved',['datos'=>$datos,'usuario'=>$usuario,'password'=>$password,'list_product'=>$list_product]);//
     }
     
     public function disapproved($order)

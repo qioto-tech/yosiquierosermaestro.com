@@ -21,11 +21,7 @@ class Payment_Deposit extends Job
      */
     public function __construct( $order )
     {
-        //
-//     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
-//     	->where('orders.id',$order)
-//     	->select('orders.id','persons.customer_email')
-//     	->get();
+
     	$datos = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->join('products', 'orders.product_id','=','products.id')
     	->where('orders.id',$order)
