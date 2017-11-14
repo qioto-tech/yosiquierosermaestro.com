@@ -1251,7 +1251,7 @@
                                                                      <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
                                                                           Contrase�a: </span><span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: #d49344;text-align: center;">
                                                                           {!!$password!!}</span></li>
-                                                                @if( $list_product->count() > 0 )
+                                                                @if( !is_null( $list_product ) )
                                                                 	@foreach($list_product as $product)
 		                                                                <li style="padding-left: 13px;list-style-type: disc;list-style-position: outside;Margin-bottom: 0;Margin-top: 10px;list-style-image: url(https://i9.createsend1.com/static/eb/master/09-onyx/images/bullet.png);text-align: left;">
 		                                                                     <span style="font-style: normal;font-weight: 100;Margin-bottom: 0;Margin-top: 12px;font-size: 30px;line-height: 40px;font-family: Cabin,Avenir,sans-serif;color: white;text-align: center;">
@@ -1276,9 +1276,11 @@
                                                             </ul>
                                                             
                                                             <p style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 16px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;">
-                                                              Te deseamos éxitos en la preparación para tu futura carrera profesional. 
+                                                              Te deseamos exitos en la preparacion para tu futura carrera profesional. 
                                                                </p>
-
+															<p style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 16px;font-size: 14px;line-height: 22px;font-family: Cabin,Avenir,sans-serif;color: #fff;">
+                                                              Cualquier consulta o duda por favor comunicarse a traves del canal de facebook, al correo info@yosiquierosermaestro.com. 
+                                                               </p>
                                                         </td>
                                                     </tr>
                                                 </tbody></table>
