@@ -100,7 +100,7 @@ $personalidad2 = ("Finalmente se debe cargar la imagen o fotografía del deposit
                             {!! Form::open(['url' => route('upload-post'), 'class' => 'dropzone', 'files'=>true, 'id'=>'real-dropzone']) !!}
 
                             <input type="hidden" id="num_documento" name="num_documento" >
-                            <input type="hidden" id="order_id" name="order_id" value="{{$datos->order_id}}">
+                            <input type="hidden" id="order_id" name="order_id" value="{{$order}}">
 
 
                             <div class="dz-message">

@@ -48,11 +48,7 @@ class ImageRepository {
 
 
       //  $uploadSuccess2 = $this->icon($photo, $filenameExt);
-$x=DB::table('orders')
-    	->where('id',$form_data['order_id'])
-    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> "public/".$form_data['num_documento'] . $allowed_filename . '.jpg']);
-    	
-dd($x);
+
 
         if (!$uploadSuccess1 ) {
 
@@ -61,9 +57,14 @@ dd($x);
                         'message' => 'Server error while uploading',
                         'code' => 500
                             ], 500);
+            
+                
+    
         }
 
-        
+        DB::table('orders')
+    	->where('id',$form_data['order_id'])
+    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> "public/".$form_data['num_documento'] . $allowed_filename . '.jpg']);
         
 
 	

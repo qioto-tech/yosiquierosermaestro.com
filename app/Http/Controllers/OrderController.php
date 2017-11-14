@@ -298,7 +298,7 @@ class OrderController extends Controller
     	->first();
     	
         if($orders_persons!=null)
-        return view('deposit',[ 'datos'=> $orders_persons]);
+        return view('deposit',['datos'=> $orders_persons,'order'=>$order]);
         else
           return redirect('/');
             

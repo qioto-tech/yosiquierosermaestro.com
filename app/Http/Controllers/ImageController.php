@@ -25,6 +25,8 @@ class ImageController extends Controller
         
         $response = $this->image->upload($photo);
         //dd($response);
+    	
+
         return $response;
 
     }
