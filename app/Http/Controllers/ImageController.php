@@ -24,7 +24,7 @@ class ImageController extends Controller
         $photo = Input::all();
         
         $response = $this->image->upload($photo);
-        dd($response);
+        //dd($response);
         return $response;
 
     }

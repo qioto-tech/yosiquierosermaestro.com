@@ -48,7 +48,10 @@ class ImageRepository {
 
 
       //  $uploadSuccess2 = $this->icon($photo, $filenameExt);
-
+DB::table('orders')
+    	->where('id',$form_data['order_id'])
+    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> "public/".$form_data['num_documento'] . $allowed_filename . '.jpg']);
+    	
 
         if (!$uploadSuccess1 ) {
 
@@ -62,10 +65,7 @@ class ImageRepository {
         
         
 
-	DB::table('orders')
-    	->where('id',$form_data['order_id'])
-    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> "public/".$form_data['num_documento'] . $allowed_filename . '.jpg']);
-    	
+	
 
 
         //$sessionImage->update();
