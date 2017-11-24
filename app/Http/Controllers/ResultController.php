@@ -150,13 +150,15 @@ class ResultController extends Controller
 		$cadena = '';
 		$usu_usuario = $request->usuario;
 		$usu_password = md5( $request->password);
+		$attempt = $request->attempt;
+		
 		$usuario = DB::connection('mecapacitoecuador')->select('	
  		SELECT us.id FROM `TB_USUARIOS` tmp
  		inner join mood_user us on (UPPER(us.username) = UPPER(tmp.usu_usuario))
  		where tmp.usu_usuario = ? and tmp.usu_password = ?',[$usu_usuario,$usu_password]);
 		
 		if(count($usuario) > 0){
-			$this->process ($usuario[0]->id, $request->sexo);
+			$this->process ($attempt, $usuario[0]->id, $request->sexo);
 			$cadena = $this->present_info(1);
 			$results[] = [ 'value' => $cadena];
 		} else {
@@ -204,10 +206,23 @@ class ResultController extends Controller
 		return $cadena;
 	}
 	
-	private function process ($user, $genero)
+	private function process ($attempt, $user, $genero)
 	{
 		
 		//registro verdades totalesL
+		
+		
+// 		select us.id usuario_id, us.username usuario, us_ev.quiz prueba_id, ev.name, pre_gui.questionid pregunta_id,
+// 		pre.name pregunta_descripcion , pre_gui.page pregunta_pagina, pre_gui.maxmark pregunta_puntaje, result.rightanswer respuesta_correcta,
+// 		result.responsesummary respuesta_usuario, hom.Id_pregunta_excel
+// 		from mood_user us
+// 		join mood_quiz_attempts us_ev on us.id = us_ev.userid
+// 		join mood_quiz ev on ev.id = us_ev.quiz
+// 		join mood_quiz_slots pre_gui on pre_gui.quizid = us_ev.quiz
+// 		join mood_question pre on pre_gui.questionid = pre.id
+// 		join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
+// 		join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
+// 		where us_ev.attempt = 2 and us.id = X
 		
 		$this->resultado[0]['TV'] = 0;
 		//LV = 0
@@ -220,10 +235,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 			result.responsesummary = ? and
 			hom.Id_pregunta_excel in (25,31,37,43,49,55,61,67,73,79,91,103,121,145,151,157,163,169,175,187,205,223,235,241,247,253,259,265,271,277,289,295,301,307,313,319,331,343,356,362,368)
-			GROUP BY result.responsesummary',[$user,'VERDADERO']);
+			GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//FV suma los resultados verdadero columna F in (25,31,37,43,49,55,61,67,73,79,91,103,121,145,151,157,163,169,175,187,205,223,235,241,247,253,259,265,271,277,289,295,301,307,313,319,331,343,356,362,368)
 		$this->resultado[1]['TV'] = (count($fv) == 0)?0:((is_null($fv[0]->FV))?0:$fv[0]->FV);
 			
@@ -236,10 +251,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (90)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//KV suma los resultados verdadero columna F in (90)
 		//dd($kv);
 		$this->resultado[2]['TV'] = (count($kv) == 0)?0:((is_null($kv[0]->KV))?0:$kv[0]->KV);
@@ -253,10 +268,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (25,35,46,60,66,104,108,118,156,182,254)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//HsV suma los resultados verdadero columna F in (25,35,46,60,66,104,108,118,156,182,254)
 		$this->resultado[3]['TV'] = (count($hsv) == 0)?0:((is_null($hsv[0]->HSV))?0:$hsv[0]->HSV);
 		
@@ -269,10 +284,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (12,22,25,44,45,46,53,63,80,99,124,134,137,153,154,177,182,188,222,240)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//DV suma los resultados verdadero columna F in (12,22,25,44,45,46,53,63,80,99,124,134,137,153,154,177,182,188,222,240)
 		$this->resultado[4]['TV'] = (count($dv) == 0)?0:((is_null($dv[0]->DV))?0:$dv[0]->DV);
 		
@@ -285,10 +300,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (18,25,38,46,47,51,72,108,173,179,182,225,237)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//HyV suma los resultados verdadero columna F in (18,25,38,46,47,51,72,108,173,179,182,225,237)
 		$this->resultado[5]['TV'] = (count($hyv) == 0)?0:((is_null($hyv[0]->HYV))?0:$hyv[0]->HYV);
 		
@@ -301,10 +316,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (24,28,29,38,39,42,49,59,61,63,78,89,96,101,106,112,120,202,209,226,232,266,271,295)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//PdV suma los resultados verdadero columna F in (24,28,29,38,39,42,49,59,61,63,78,89,96,101,106,112,120,202,209,226,232,266,271,295)
 		$this->resultado[6]['TV'] = (count($pdv) == 0)?0:((is_null($pdv[0]->PDV))?0:$pdv[0]->PDV);
 		
@@ -317,10 +332,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (11,32,69,71,74,81,87,119,126,129,135,144,173,184,194,198,203,212,216,226,243,258,263,275,278)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//MfV H suma los resultados verdadero columna F in (11,32,69,71,74,81,87,119,126,129,135,144,173,184,194,198,203,212,216,226,243,258,263,275,278)
 		} else {
 		//mujer
@@ -332,10 +347,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (11,32,69,71,74,81,87,119,126,128,129,135,144,135,144,184,194,198,203,212,226,243,258,263,278)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//MfV M suma los resultados verdadero columna F in (11,32,69,71,74,81,87,119,126,128,129,135,144,135,144,184,194,198,203,212,226,243,258,263,278)
 		}
 		$this->resultado[7]['TV'] = (count($mfv) == 0)?0:((is_null($mfv[0]->MFV))?0:$mfv[0]->MFV);
@@ -349,10 +364,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (23,24,29,30,31,49,106,120,145,151,152,153,169,241,266,278,284,292,312,314,340,341,343,362,368)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//PaV suma los resultados verdadero columna F in (23,24,29,30,31,49,106,120,145,151,152,153,169,241,266,278,284,292,312,314,340,341,343,362,368)
 		$this->resultado[8]['TV'] = (count($pav) == 0)?0:((is_null($pav[0]->PAV))?0:$pav[0]->PAV);
 		
@@ -365,10 +380,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (18,23,30,38,45,63,72,80,89,96,101,137,154,177,182,203,225,249,280,282,284,292,296,308,309,311,315,316,317,320,323,324,327,332,333,334,335,336,338)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//PtV suma los resultados verdadero columna F in (18,23,30,38,45,63,72,80,89,96,101,137,154,177,182,203,225,249,280,282,284,292,296,308,309,311,315,316,317,320,323,324,327,332,333,334,335,336,338)
 		$this->resultado[9]['TV'] = (count($ptv) == 0)?0:((is_null($ptv[0]->PTV))?0:$ptv[0]->PTV);
 		
@@ -381,10 +396,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (23,24,28,29,30,38,39,42,45,49,51,53,55,72,92,99,145,152,154,173,175,177,187,189,197,225,228,236,240,241,249,254,259,263,275,280,281,284,286,288,294,298,299,303,305,306,310,314,318,323,326,327,329,330,332,336,339,340,362)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//ScV suma los resultados verdadero columna F in (23,24,28,29,30,38,39,42,45,49,51,53,55,72,92,99,145,152,154,173,175,177,187,189,197,225,228,236,240,241,249,254,259,263,275,280,281,284,286,288,294,298,299,303,305,306,310,314,318,323,326,327,329,330,332,336,339,340,362)
 		$this->resultado[10]['TV'] = (count($scv) == 0)?0:((is_null($scv[0]->SCV))?0:$scv[0]->SCV);
 		
@@ -397,10 +412,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (20,22,28,30,57,62,68,92,94,105,120,129,138,152,162,175,176,189,197,207,212,213,218,219,225,227,234,236,245,249,251,255,257,260,276)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//MaV suma los resultados verdadero columna F in (20,22,28,30,57,62,68,92,94,105,120,129,138,152,162,175,176,189,197,207,212,213,218,219,225,227,234,236,245,249,251,255,257,260,276)
 		$this->resultado[11]['TV'] = (count($mav) == 0)?0:((is_null($mav[0]->MAV))?0:$mav[0]->MAV);
 		
@@ -413,10 +428,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (38,63,77,107,111,117,134,142,165,168,174,192,222,250,258,272,282,291,296,303,309,315,333,344,345,354,355,358,359,364,371,374,375,376)
-		GROUP BY result.responsesummary',[$user,'VERDADERO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'VERDADERO']);
 		//SiV suma los resultados verdadero columna F in (38,63,77,107,111,117,134,142,165,168,174,192,222,250,258,272,282,291,296,303,309,315,333,344,345,354,355,358,359,364,371,374,375,376)
 		$this->resultado[12]['TV'] = (count($siv) == 0)?0:((is_null($siv[0]->SIV))?0:$siv[0]->SIV);
 		
@@ -432,10 +447,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (23,36,48,58,84,100,109,114,130,146,160,190,210,239,267)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//LF suma los resultados falsos columna G in (23,36,48,58,84,100,109,114,130,146,160,190,210,239,267)
 		$this->resultado[0]['TF'] = (count($lf) == 0)?0:((is_null($lf[0]->LF))?0:$lf[0]->LF);
 		
@@ -448,10 +463,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (13,19,85,97,109,115,127,133,139,181,193,199,211,217,229,283,325,337,350)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//FF suma los resultados falsos columna G in (13,19,85,97,109,115,127,133,139,181,193,199,211,217,229,283,325,337,350)
 		$this->resultado[1]['TF'] = (count($ff) == 0)?0:((is_null($ff[0]->FF))?0:$ff[0]->FF);
 		
@@ -464,10 +479,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (36,44,65,83,117,123,129,134,137,143,155,164,165,174,178,203,220,250,274,291,297,337,345,346,348,353,355,363,372)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//KF suma los resultados falsos columna G in (36,44,65,83,117,123,129,134,137,143,155,164,165,174,178,203,220,250,274,291,297,337,345,346,348,353,355,363,372)
 		$this->resultado[2]['TF'] = (count($kf) == 0)?0:((is_null($kf[0]->KF))?0:$kf[0]->KF);
 		
@@ -480,10 +495,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (9,10,15,17,27,52,54,64,98,124,148,150,159,171,180,183,186,215,231,256,262)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//HsF suma los resultados falsos columna G in (9,10,15,17,27,52,54,64,98,124,148,150,159,171,180,183,186,215,231,256,262)
 		$this->resultado[3]['TF'] = (count($hsf) == 0)?0:((is_null($hsf[0]->HSF))?0:$hsf[0]->HSF);
 		
@@ -496,10 +511,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (9,16,17,27,36,40,44,50,52,56,62,75,82,83,102,116,125,141,147,148,149,150,155,172,185,195,196,219,228,230,233,245,252,255,267,274,337)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//DF suma los resultados falsos columna G in (9,16,17,27,36,40,44,50,52,56,62,75,82,83,102,116,125,141,147,148,149,150,155,172,185,195,196,219,228,230,233,245,252,255,267,274,337)
 		$this->resultado[4]['TF'] = (count($df) == 0)?0:((is_null($df[0]->DF))?0:$df[0]->DF);
 		
@@ -512,10 +527,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (9,10,14,15,16,17,21,33,36,52,54,65,83,88,98,102,105,117,122,123,131,132,136,142,148,155,158,159,164,166,168,171,174,180,183,186,192,200,215,220,231,248,250,256,260,270,272)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//HyF suma los resultados falsos columna G in (9,10,14,15,16,17,21,33,36,52,54,65,83,88,98,102,105,117,122,123,131,132,136,142,148,155,158,159,164,166,168,171,174,180,183,186,192,200,215,220,231,248,250,256,260,270,272)
 		$this->resultado[5]['TF'] = (count($hyf) == 0)?0:((is_null($hyf[0]->HYF))?0:$hyf[0]->HYF);
 		
@@ -528,10 +543,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (16,19,41,77,86,90,102,129,132,136,150,164,165,167,174,178,192,216,221,224,233,250,268,270,273,274)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//PdF suma los resultados falsos columna G in (16,19,41,77,86,90,102,129,132,136,150,164,165,167,174,178,192,216,221,224,233,250,268,270,273,274)
 		$this->resultado[6]['TF'] = (count($pdf) == 0)?0:((is_null($pdf[0]->PDF))?0:$pdf[0]->PDF);
 		
@@ -544,10 +559,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 			result.responsesummary = ? and
 			hom.Id_pregunta_excel in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,238,242,244,246,261,264,279)
-			GROUP BY result.responsesummary',[$user,'FALSO']);
+			GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 			//MfF H suma los resultados falsos columna G in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,238,242,244,246,261,264,279)
 		} else {
 		//mujer
@@ -559,10 +574,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 			result.responsesummary = ? and
 			hom.Id_pregunta_excel in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,216,238,242,244,246,261,264,275,279)
-			GROUP BY result.responsesummary',[$user,'FALSO']);
+			GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 			//MfF M suma los resultados falsos columna G in (8,26,33,34,70,75,76,83,93,110,111,114,127,128,139,140,170,191,200,201,204,206,208,214,216,238,242,244,246,261,264,275,279)
 		}
 		$this->resultado[7]['TF'] = (count($mff) == 0)?0:((is_null($mff[0]->MFF))?0:$mff[0]->MFF);
@@ -576,10 +591,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (88,102,105,107,111,117,251,262,273,290,291,293,304,321,322)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//PaF suma los resultados falsos columna G in (88,102,105,107,111,117,251,262,273,290,291,293,304,321,322)
 		$this->resultado[8]['TF'] = (count($paf) == 0)?0:((is_null($paf[0]->PAF))?0:$paf[0]->PAF);
 		
@@ -592,10 +607,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (10,16,40,116,147,172,181,300,328)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//PtF suma los resultados falsos columna G in (10,16,40,116,147,172,181,300,328)
 		$this->resultado[9]['TF'] = (count($ptf) == 0)?0:((is_null($ptf[0]->PTF))?0:$ptf[0]->PTF);
 		
@@ -608,10 +623,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (13,16,19,41,97,98,113,172,184,186,199,217,262,283,285,287,297,302,350)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//ScF suma los resultados falsos columna G in (13,16,19,41,97,98,113,172,184,186,199,217,262,283,285,287,297,302,350)
 		$this->resultado[10]['TF'] = (count($scf) == 0)?0:((is_null($scf[0]->SCF))?0:$scf[0]->SCF);
 		
@@ -624,10 +639,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (95,100,107,113,114,143,161,165,174,250,270)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//MaF suma los resultados falsos columna G in (95,100,107,113,114,143,161,165,174,250,270)
 		$this->resultado[11]['TF'] = (count($maf) == 0)?0:((is_null($maf[0]->MAF))?0:$maf[0]->MAF);
 		
@@ -640,10 +655,10 @@ class ResultController extends Controller
 			join mood_question pre on pre_gui.questionid = pre.id
 			join mood_question_attempts result on result.questionid = pre.id and result.questionusageid = us_ev.uniqueid
 			join tb_homologacion_preguntas hom on hom.Id_pregunta_moodle = pre.id
-			where us_ev.attempt = 1 and us.id = ? and
+			where us_ev.attempt = ? and us.id = ? and
 		result.responsesummary = ? and
 		hom.Id_pregunta_excel in (32,39,56,86,93,113,119,138,188,196,214,216,238,244,262,269,274,287,328,335,342,347,349,351,352,357,360,361,365,367,369,370,377)
-		GROUP BY result.responsesummary',[$user,'FALSO']);
+		GROUP BY result.responsesummary',[$attempt,$user,'FALSO']);
 		//SiF suma los resultados falsos columna G in (32,39,56,86,93,113,119,138,188,196,214,216,238,244,262,269,274,287,328,335,342,347,349,351,352,357,360,361,365,367,369,370,377)
 		$this->resultado[12]['TF'] = (count($sif) == 0)?0:((is_null($sif[0]->SIF))?0:$sif[0]->SIF);
 		

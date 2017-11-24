@@ -53,6 +53,12 @@ function view_parameters(param,note){
 						  	</div>
 						  </div>
 						  <div class="form-group">
+						    <label class="control-label col-sm-2" for="name">Intentos</label>
+						    <div class="col-sm-8">
+						    	{!!	Form::select('attempt',['1' => 'Primer Intento', '2' => 'Segundo Intento', '3' => 'Tercero Intento', '4' => 'Cuarto Intento', '5' => 'Quinto Intento', '6' => 'Sexto Intento', '7' => 'Septimo Intento', '8' => 'Octavo Intento', '9' => 'Noveno Intento', '10' => 'Decimo Intento'],null,['class'=>'form-control', 'placeholder'=>'Selecciona el intento', 'id'=>'attempt', 'name'=>'attempt']) !!}       
+						  	</div>
+						  </div>
+						  <div class="form-group">
     						<div class="col-sm-offset-2 col-sm-8">						  
 						  		<button type="button" class="btn btn-default" id="btn-validate">Ver resultados</button>
 							</div>
