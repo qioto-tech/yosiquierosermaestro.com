@@ -15,6 +15,18 @@ class ImageRepository {
 
     public function upload($form_data) {
 
+    	$carpeta = date('Y');
+    	if (!file_exists($carpeta)) {
+    		mkdir($carpeta, 0755, true);
+    	}
+    	$carpeta = $carpeta . '/' . date('W');
+    	if (!file_exists($carpeta)) {
+    		mkdir($carpeta, 0755, true);
+    	}
+    	
+    	$path = $carpeta . '/';
+    	
+    	
         $validator = Validator::make($form_data, Image::$rules, Image::$messages);
 
 
@@ -37,14 +49,14 @@ class ImageRepository {
 
         $filename = $this->sanitize($originalNameWithoutExt);
 
-        $allowed_filename = $this->createUniqueFilename($filename);
+        $allowed_filename = $this->createUniqueFilename($path, $filename);
 
 
         $filenameExt = $form_data['num_documento'] . $allowed_filename . '.jpg';
 
 
 
-        $uploadSuccess1 = $this->original($photo, $filenameExt);
+        $uploadSuccess1 = $this->original($path, $photo, $filenameExt);
 
 
       //  $uploadSuccess2 = $this->icon($photo, $filenameExt);
@@ -57,14 +69,12 @@ class ImageRepository {
                         'message' => 'Server error while uploading',
                         'code' => 500
                             ], 500);
-            
-                
     
         }
 
         DB::table('orders')
     	->where('id',$form_data['order_id'])
-    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> "public/".$form_data['num_documento'] . $allowed_filename . '.jpg']);
+    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> $path . $form_data['num_documento'] . $allowed_filename . '.jpg']);
         
 
 	
@@ -78,9 +88,10 @@ class ImageRepository {
                         ], 200);
     }
 
-    public function createUniqueFilename($filename) {
-        $full_size_dir = 'public';
-        $full_image_path = $full_size_dir . $filename . '.jpg';
+    public function createUniqueFilename($path, $filename) {
+
+
+    	$full_image_path = $path . $filename . '.jpg';
 
         if (File::exists($full_image_path)) {
             // Generate token for image
@@ -97,9 +108,9 @@ class ImageRepository {
     /**
      * Optimize Original Image
      */
-    public function original($photo, $filename) {
+    public function original($path, $photo, $filename) {
         $manager = new ImageManager();
-        $image = $manager->make($photo)->encode('jpg')->save('public' . $filename);
+        $image = $manager->make($photo)->encode('jpg')->save($path . $filename);
 
         return $image;
     }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Jobs\Envio_Mensaje;
 use App\Jobs\Payment_Deposit;
 use Redirect;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @author renvi
@@ -23,6 +24,7 @@ class OrderController extends Controller
 	private $payment_service_other;
 	private $payment_service;
 	private $pending_url;
+	private $home_url;
 	
 	function __construct() {
 		$constants= DB::table('constants')
@@ -54,6 +56,12 @@ class OrderController extends Controller
 		->select('value')
 		->get();
 		$this->payment_service = $constants[0]->value;
+
+		$constants= DB::table('constants')
+		->where('code','home_url')
+		->select('value')
+		->get();
+		$this->home_url = $constants[0]->value;
 		
 	}
 	/**
@@ -309,25 +317,19 @@ class OrderController extends Controller
     }
     
     public function authorize_payment( $order ){
+
     	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
     	->join('products', 'orders.product_id','=','products.id')
-    	->where('orders.id',$order)
-    	->select('orders.code','orders.product_description','orders.password_ne', 'persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
+    	->where('orders.id', $order)
+    	->select('orders.code', 'orders.product_description', 'orders.password_ne', 'persons.customer_ci', 'persons.customer_name', 'persons.customer_lastname', 'persons.customer_email', 'products.code as pcode', 'products.name as pname')
     	->get();
     	
     	$user = $this->actualizarmce ($orders_persons);
-    	
-    	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
-    	->join('products', 'orders.product_id','=','products.id')
-    	->where('orders.id',$order)
-    	->select('products.name as pname','orders.product_description','orders.code', 'orders.password_ne','persons.customer_ci', 'persons.customer_name','persons.customer_lastname','persons.customer_email','products.code as pcode')
-    	->get();
-    	
-    	
+
     	$this->dispatch(new Envio_Mensaje($orders_persons[0]));
     	
-//    	return Redirect::to('http://www.yosiquierosermaestro.com/pendientes');
-    	return Redirect::to( $this->pending_url );
+    	//    	return Redirect::to('http://www.yosiquierosermaestro.com/home');
+    	return Redirect::to( $this->home_url );
     }
     
     private function generateRandomString($length = 5) {
@@ -345,16 +347,20 @@ class OrderController extends Controller
     	foreach ($datas as $data){
     		$usuario = 'Aspirante_'.$data->code;
     		
-    		$passwNE = $this->generateRandomString();
-    		$password = md5($passwNE);
+    		if( $data->password_ne )
+    			$passwNE = $data->password_ne;
+    		else 
+    			$passwNE = $this->generateRandomString();
+    		
+    		$password = md5( $passwNE );
     		
     		DB::table('orders')
     		->where('code',$data->code)
-    		->update(['password_ne' => $passwNE,'state' => 'Autorizado']);
+    		->update(['password_ne' => $passwNE, 'state' => 'Autorizado','user' => Auth::user()->email]);
     		
     		$user =  DB::connection('mecapacitoecuador')->insert('insert into TB_USUARIOS(usu_usuario,usu_password,usu_nombre,usu_apellido,usu_mail,usu_perfil,cur_clave) value (?,?,?,?,?,?,?)',[$usuario,$password,$data->customer_name,$data->customer_lastname,$data->customer_email,'Estudiante',$data->pcode]);
     	}
-    	return $user;
+    	return $user = 1;
     }
     
     private function encryptIt( $data ) {
