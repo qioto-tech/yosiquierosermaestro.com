@@ -14,78 +14,90 @@ use Illuminate\Http\Request;
 class ImageRepository {
 
     public function upload($form_data) {
-
-    	$carpeta = date('Y');
-    	if (!file_exists($carpeta)) {
-    		mkdir($carpeta, 0755, true);
-    	}
-    	$carpeta = $carpeta . '/' . date('W');
-    	if (!file_exists($carpeta)) {
-    		mkdir($carpeta, 0755, true);
-    	}
     	
-    	$path = $carpeta . '/';
+    	$validar = Order::where('orders.document_number',$form_data['num_documento'])
+    	->select('orders.id')
+    	->get();
     	
-    	
-        $validator = Validator::make($form_data, Image::$rules, Image::$messages);
-
-
-        if ($validator->fails()) {
-
-            return Response::json([
-                        'error' => true,
-                        'message' => $validator->messages()->first(),
-                        'code' => 400
-                            ], 400);
-        }
-
-        $photo = $form_data['file'];
-
-
-        $originalName = $photo->getClientOriginalName();
-
-        $originalNameWithoutExt = substr($originalName, 0, strlen($originalName) - 4);
-
-
-        $filename = $this->sanitize($originalNameWithoutExt);
-
-        $allowed_filename = $this->createUniqueFilename($path, $filename);
-
-
-        $filenameExt = $form_data['num_documento'] . $allowed_filename . '.jpg';
-
-
-
-        $uploadSuccess1 = $this->original($path, $photo, $filenameExt);
-
-
-      //  $uploadSuccess2 = $this->icon($photo, $filenameExt);
-
-
-        if (!$uploadSuccess1 ) {
-
-            return Response::json([
-                        'error' => true,
-                        'message' => 'Server error while uploading',
-                        'code' => 500
-                            ], 500);
-    
-        }
-
-        DB::table('orders')
-    	->where('id',$form_data['order_id'])
-    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> $path . $form_data['num_documento'] . $allowed_filename . '.jpg']);
-        
-
+    	if( count($validar) == 0 ){
+	    	$carpeta = date('Y');
+	    	if (!file_exists($carpeta)) {
+	    		mkdir($carpeta, 0755, true);
+	    	}
+	    	$carpeta = $carpeta . '/' . date('W');
+	    	if (!file_exists($carpeta)) {
+	    		mkdir($carpeta, 0755, true);
+	    	}
+	    	
+	    	$path = $carpeta . '/';
+	    	
+	    	
+	        $validator = Validator::make($form_data, Image::$rules, Image::$messages);
 	
-
-
-        //$sessionImage->update();
-
-        return Response::json([
-                    'error' => false,
-                    'code' => 200
-                        ], 200);
+	
+	        if ($validator->fails()) {
+	
+	            return Response::json([
+	                        'error' => true,
+	                        'message' => $validator->messages()->first(),
+	                        'code' => 400
+	                            ], 400);
+	        }
+	
+	        $photo = $form_data['file'];
+	
+	
+	        $originalName = $photo->getClientOriginalName();
+	
+	        $originalNameWithoutExt = substr($originalName, 0, strlen($originalName) - 4);
+	
+	
+	        $filename = $this->sanitize($originalNameWithoutExt);
+	
+	        $allowed_filename = $this->createUniqueFilename($path, $filename);
+	
+	
+	        $filenameExt = $form_data['num_documento'] . $allowed_filename . '.jpg';
+	
+	
+	
+	        $uploadSuccess1 = $this->original($path, $photo, $filenameExt);
+	
+	
+	      //  $uploadSuccess2 = $this->icon($photo, $filenameExt);
+	
+	
+	        if (!$uploadSuccess1 ) {
+	
+	            return Response::json([
+	                        'error' => true,
+	                        'message' => 'Server error while uploading',
+	                        'code' => 500
+	                            ], 500);
+	    
+	        }
+	
+	        DB::table('orders')
+	    	->where('id',$form_data['order_id'])
+	    	->update(['document_number' => $form_data['num_documento'],'state' => "Pendiente", 'document_path'=> $path . $form_data['num_documento'] . $allowed_filename . '.jpg']);
+	        
+	
+		
+	
+	
+	        //$sessionImage->update();
+	
+	        return Response::json([
+	                    'error' => false,
+	                    'code' => 200
+	                        ], 200);
+    	} else {
+    		return Response::json([
+    				'error' => true,
+    				'message' => 'El numero de deposito ya existe',
+    				'code' => 500
+    		], 500);
+    	}
     }
 
     public function createUniqueFilename($path, $filename) {

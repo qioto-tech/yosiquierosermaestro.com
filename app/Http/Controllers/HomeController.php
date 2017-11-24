@@ -113,17 +113,26 @@ class HomeController extends Controller
     }
 
     public function update_manual(Request $request){
-
-    	$product = $this->search_product( $request->product );
-    	$person = $this->search_person( $request->customer_ci, $request);
-    	$order = $this->store($person, $product, 2, $request);
-    	// 	    	return redirect()->route('home');
-    	if($order){
-	    	$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">Se ingreso correctamente el pedido.</p>';
-	    	$results[] = [ 'value' => $cadena, 'flag' => 'OK'];
+		
+    	$validar = Order::where('orders.document_number',$request->num_documento)
+    	->select('orders.id')
+    	->get();
+    	
+    	if( count($validar) == 0 ){
+	    	$product = $this->search_product( $request->product );
+	    	$person = $this->search_person( $request->customer_ci, $request);
+	    	$order = $this->store($person, $product, 2, $request);
+	    	
+	    	if($order){
+		    	$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">Se ingreso correctamente el pedido.</p>';
+		    	$results[] = [ 'value' => $cadena, 'flag' => 'OK'];
+	    	} else {
+	    		$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">No se ingreso correctamente el pedido.</p>';
+	    		$results[] = [ 'value' => $cadena, 'flag' => 'FAIL'];    		
+	    	}
     	} else {
-    		$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">No se ingreso correctamente el pedido.</p>';
-    		$results[] = [ 'value' => $cadena, 'flag' => 'FAIL'];    		
+    		$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">Ya existe el numero de documento revise el deposito.</p>';
+    		$results[] = [ 'value' => $cadena, 'flag' => 'FAIL'];
     	}
     	return response()->json($results);
     }

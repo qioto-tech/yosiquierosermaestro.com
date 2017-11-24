@@ -178,7 +178,6 @@ $(document).ready(function(){
 					$.each(data, function(i, item) {
 						if(item.flag != 'OK'){
 							$("#resultado").html(item.value);
-							$("#submit").prop("disabled", true);
 						} else {
 							$("#resultado").html(item.value);
 						}							
