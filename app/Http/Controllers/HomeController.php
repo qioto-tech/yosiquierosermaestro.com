@@ -199,6 +199,7 @@ class HomeController extends Controller
     {
     	$list_clients= DB::table('teachers')
     	->where('state',1)
+    	->where('paidout',null)
     	->paginate(20);
     	
     	return view('client',['lista_clientes' => $list_clients]);
@@ -209,7 +210,10 @@ class HomeController extends Controller
     	//dd($request);
     	$cliente = $list_clients= DB::table('teachers')
     	->where('id', $request->id)
-    	->update(['contacted' => $request->contacted, 'facebook' => $request->facebook, 'interested' => $request->interested, 'observation' => $request->observation, 'user' =>  Auth::user()->email]);
+    	->update(['contacted' => $request->contacted, 'facebook' => $request->facebook, 
+    			'interested' => $request->interested, 'observation' => $request->observation, 
+    			'paidout' => $request->paidout, 'tocall' => $request->tocall, 
+    			'user' =>  Auth::user()->email]);
     	
     	if ($cliente){
     		$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">Se actualizo correctamente el contacto.</p>';
@@ -232,8 +236,26 @@ class HomeController extends Controller
 
     	$cadena = '';
     	foreach ($list_clients as $client){
-	    	$cadena .= '<div class="form-group">';
-	    	$cadena .= '	    	<label class="control-label col-sm-2" for="contacted">Fue Contactado:</label>';
+    		$cadena .= '<div class="form-group">';
+    		$cadena .= '	    	<label class="control-label col-sm-2" for="facebook">Nombres:</label>';
+    		$cadena .= '<div class="col-sm-10">';
+    		$cadena .= $client->name;
+    		$cadena .= '</div>';
+    		$cadena .= '    	</div>';
+    		$cadena .= '<div class="form-group">';
+    		$cadena .= '	    	<label class="control-label col-sm-2" for="facebook">Email:</label>';
+    		$cadena .= '<div class="col-sm-10">';
+    		$cadena .= $client->email;
+    		$cadena .= '</div>';
+    		$cadena .= '    	</div>';
+    		$cadena .= '<div class="form-group">';
+    		$cadena .= '	    	<label class="control-label col-sm-2" for="facebook">Celular:</label>';
+    		$cadena .= '<div class="col-sm-10">';
+    		$cadena .= $client->celular;
+    		$cadena .= '</div>';
+    		$cadena .= '    	</div>';
+    		$cadena .= '<div class="form-group">';
+	    	$cadena .= '	    	<label class="control-label col-sm-2" for="contacted">Se envio el mail:</label>';
 	    	$cadena .= '<div class="col-sm-10">';
 	    	$cadena .= '	    		<input name="contacted" value="1" type="checkbox"';
 	    	$cadena .= ($client->contacted)?(' checked="checked"'):('');
@@ -255,6 +277,22 @@ class HomeController extends Controller
 	    	$cadena .= '<div class="col-sm-10">';
 	    	$cadena .= '	    		<input name="interested" value="1" type="checkbox"';
 	    	$cadena .= ($client->interested)?(' checked="checked"'):('');
+	    	$cadena .= '>';
+	    	$cadena .= '</div>';
+	    	$cadena .= '    	</div>';
+	    	$cadena .= '<div class="form-group">';
+	    	$cadena .= '	    	<label class="control-label col-sm-2" for="interested">Pagado:</label>';
+	    	$cadena .= '<div class="col-sm-10">';
+	    	$cadena .= '	    		<input name="paidout" value="1" type="checkbox"';
+	    	$cadena .= ($client->paidout)?(' checked="checked"'):('');
+	    	$cadena .= '>';
+	    	$cadena .= '</div>';
+	    	$cadena .= '    	</div>';
+	    	$cadena .= '<div class="form-group">';
+	    	$cadena .= '	    	<label class="control-label col-sm-2" for="interested">Volver a llamar:</label>';
+	    	$cadena .= '<div class="col-sm-10">';
+	    	$cadena .= '	    		<input name="tocall" value="1" type="checkbox"';
+	    	$cadena .= ($client->tocall)?(' checked="checked"'):('');
 	    	$cadena .= '>';
 	    	$cadena .= '</div>';
 	    	$cadena .= '    	</div>';

@@ -325,7 +325,12 @@ class OrderController extends Controller
     	->get();
     	
     	$user = $this->actualizarmce ($orders_persons);
-
+    	$orders_persons = Order::join('persons', 'orders.customer_id','=','persons.id')
+    	->join('products', 'orders.product_id','=','products.id')
+    	->where('orders.id', $order)
+    	->select('orders.code', 'orders.product_description', 'orders.password_ne', 'persons.customer_ci', 'persons.customer_name', 'persons.customer_lastname', 'persons.customer_email', 'products.code as pcode', 'products.name as pname')
+    	->get();
+    	
     	$this->dispatch(new Envio_Mensaje($orders_persons[0]));
     	
     	//    	return Redirect::to('http://www.yosiquierosermaestro.com/home');
