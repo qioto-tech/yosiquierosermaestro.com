@@ -200,9 +200,26 @@ class HomeController extends Controller
     	$list_clients= DB::table('teachers')
     	->where('state',1)
     	->where('paidout',null)
+    	->where('contacted',null)
+    	->paginate(20);
+
+    	$list_clients_send_mails= DB::table('teachers')
+    	->where('state',1)
+    	->where('contacted',1)
     	->paginate(20);
     	
-    	return view('client',['lista_clientes' => $list_clients]);
+    	$list_clients_for_calls= DB::table('teachers')
+    	->where('state',1)
+    	->where('tocall',1)
+    	->where('contacted',1)
+    	->paginate(20);
+
+    	$list_clients_paidouts= DB::table('teachers')
+    	->where('state',1)
+    	->where('paidout',1)
+    	->paginate(20);
+    	
+    	return view('client',['lista_clientes' => $list_clients, 'lista_clientes_enviados_mail' => $list_clients_send_mails,'lista_clientes_para_llamar' => $list_clients_for_calls,'lista_clientes_pagados' => $list_clients_paidouts]);
     }
 
     public function update_teacher(Request $request)
@@ -214,6 +231,9 @@ class HomeController extends Controller
     			'interested' => $request->interested, 'observation' => $request->observation, 
     			'paidout' => $request->paidout, 'tocall' => $request->tocall, 
     			'user' =>  Auth::user()->email]);
+    	
+    	if( $request->contacted )
+    		$this->mailTeacher($request->id);
     	
     	if ($cliente){
     		$cadena = '<p style="color: red; font-weight: 100;font-size: 20px;">Se actualizo correctamente el contacto.</p>';
